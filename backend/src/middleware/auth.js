@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { errorResponse } = require('../utils/response');
 
 require('dotenv').config();
 
@@ -9,8 +10,8 @@ const verifyToken = (req, res, next) => {
     req.headers['authorization']?.replace('Bearer ', '');
 
   if (!token) {
-    return errorResponse(res, err.message || 'Akses ditolak, silahkan login terlebih dahulu.', err.statusCode || 401);
-  };
+    return errorResponse(res, 'Akses ditolak, silahkan login terlebih dahulu.', 401);
+  }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
