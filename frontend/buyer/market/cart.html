@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stokko - Shopping Cart</title>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-logo">
+            <img src="../images/logoBlue.png" alt="STOKKO">
+            <span class="buyer-text">Buyer</span>
+        </div>
+
+        <div class="header-right">
+            <button class="btn-premium-top">
+                <i class="fas fa-crown"></i>
+                Upgrade To premium
+            </button>
+
+            <div class="user-profile">
+                <img src="../images/profile1.png" alt="User" class="avatar">
+                <div class="user-info">
+                    <span class="user-name">Annie Leblanc</span>
+                    <span class="user-email">annie.leblanc@example.com</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <nav class="sidebar-menu">
+                <a href="../market/dashboard_buyer.html" class="menu-item">
+                    <i class="fas fa-box-open"></i>
+                    Market
+                </a>
+                <a href="../orders/orders_buyer.html" class="menu-item active">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </a>
+                <a href="../notification/notification_buyer.html" class="menu-item">
+                    <i class="fas fa-bell"></i>
+                    Notification
+                </a>
+                <a href="../profilensubscription/subscription_buyer.html" class="menu-item">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+                <a href="../priceInsights/priceInsight.html" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    Price Insights
+                </a>
+            </nav>
+
+            <div class="go-premium-card">
+                <i class="fas fa-crown"></i>
+                <h3>Go Premium</h3>
+                <p>Unlock Analytics, Smart Pricing & more!</p>
+                <button class="btn-upgrade-now">
+                    Upgrade Now
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="dashboard-body">
+                <div class="welcome-text">
+                    <h1>Shopping Cart</h1>
+                    <p>Review your items before checkout</p>
+                </div>
+
+                <div class="cart-layout">
+                    
+                    <div class="cart-items-section" id="cartItemsContainer"></div>
+
+                    <div class="order-summary-section">
+                        <h3>Order Summary</h3>
+                        
+                        <div class="summary-row">
+                            <span class="summary-label">Subtotal</span>
+                            <span class="summary-value" id="subtotalValue">Rp 0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Tax (10%)</span>
+                            <span class="summary-value" id="taxValue">Rp 0</span>
+                        </div>
+                        
+                        <div class="summary-divider"></div>
+                        
+                        <div class="summary-row total-row">
+                            <span class="summary-label">Total</span>
+                            <span class="summary-value total-price" id="totalValue">Rp 0</span>
+                        </div>
+
+                        <button class="btn-checkout" onclick="window.location.href='../checkout/checkout.html'">Proceed to Checkout</button>
+                        <button class="btn-continue" onclick="window.location.href='../market/dashboard_buyer.html'">Continue Shopping</button>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="cart.js"></script>
+</body>
+</html>

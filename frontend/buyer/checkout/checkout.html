@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stokko - Checkout</title>
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-logo">
+            <img src="../images/logoBlue.png" alt="STOKKO">
+            <span class="buyer-text">Buyer</span>
+        </div>
+
+        <div class="header-right">
+            <button class="btn-premium-top">
+                <i class="fas fa-crown"></i>
+                Upgrade To premium
+            </button>
+
+            <div class="user-profile">
+                <img src="../images/profile1.png" alt="User" class="avatar">
+                <div class="user-info">
+                    <span class="user-name">Annie Leblanc</span>
+                    <span class="user-email">annie.leblanc@example.com</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <nav class="sidebar-menu">
+                <a href="../market/dashboard_buyer.html" class="menu-item">
+                    <i class="fas fa-box-open"></i>
+                    Market
+                </a>
+                <a href="../orders/orders_buyer.html" class="menu-item active">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </a>
+                <a href="../notification/notification_buyer.html" class="menu-item">
+                    <i class="fas fa-bell"></i>
+                    Notification
+                </a>
+                <a href="../profilensubscription/subscription_buyer.html" class="menu-item">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+                <a href="../priceInsights/priceInsight.html" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    Price Insights
+                </a>
+            </nav>
+
+            <div class="go-premium-card">
+                <i class="fas fa-crown"></i>
+                <h3>Go Premium</h3>
+                <p>Unlock Analytics, Smart Pricing & more!</p>
+                <button class="btn-upgrade-now">
+                    Upgrade Now
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="checkout-wrapper">
+                <div class="checkout-header-text">
+                    <h2>Checkout</h2>
+                    <p>Complete your purchase</p>
+                </div>
+
+                <div class="checkout-grid-layout">
+                    <div class="checkout-left-col">
+                        <div class="checkout-box">
+                            <h3 class="box-title">Select Payment Method</h3>
+                            <div class="payment-methods-list">
+                                <label class="payment-method-item selected" onclick="selectPayment(this, 'qris')">
+                                    <input type="radio" name="payment" checked>
+                                    <div class="radio-custom"></div>
+                                    <div class="method-icon qris-icon"><i class="fas fa-qrcode"></i></div>
+                                    <div class="method-text">
+                                        <strong>QRIS</strong>
+                                        <span>Scan QR code to pay</span>
+                                    </div>
+                                </label>
+                                <label class="payment-method-item" onclick="selectPayment(this, 'ewallet')">
+                                    <input type="radio" name="payment">
+                                    <div class="radio-custom"></div>
+                                    <div class="method-icon ewallet-icon"><i class="fas fa-mobile-alt"></i></div>
+                                    <div class="method-text">
+                                        <strong>E-Wallet</strong>
+                                        <span>GoPay, ShopeePay, DANA, OVO</span>
+                                    </div>
+                                </label>
+                                <label class="payment-method-item" onclick="selectPayment(this, 'card')">
+                                    <input type="radio" name="payment">
+                                    <div class="radio-custom"></div>
+                                    <div class="method-icon card-icon"><i class="fas fa-credit-card"></i></div>
+                                    <div class="method-text">
+                                        <strong>Credit/Debit Card</strong>
+                                        <span>Visa, Mastercard, etc.</span>
+                                    </div>
+                                </label>
+                                <label class="payment-method-item" onclick="selectPayment(this, 'va')">
+                                    <input type="radio" name="payment">
+                                    <div class="radio-custom"></div>
+                                    <div class="method-icon va-icon"><i class="fas fa-building"></i></div>
+                                    <div class="method-text">
+                                        <strong>Virtual Account</strong>
+                                        <span>Bank transfer via VA</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="checkout-box" id="paymentDetailsBox">
+                            <h3 class="box-title">Payment Details</h3>
+                            
+                            <div id="detail-qris" class="payment-dynamic-section active">
+                                <div class="qr-code-section">
+                                    <img src="../images/qr.png" alt="QR Code" class="qr-image">
+                                    <p>Scan this QR code with your banking app to complete payment</p>
+                                </div>
+                            </div>
+
+                            <div id="detail-ewallet" class="payment-dynamic-section">
+                                <p class="section-desc">Select your preferred E-Wallet provider</p>
+                                <div class="ewallet-grid">
+                                    <div class="ewallet-item selected-wallet" onclick="selectEwallet(this)">ShopeePay</div>
+                                    <div class="ewallet-item" onclick="selectEwallet(this)">GoPay</div>
+                                    <div class="ewallet-item" onclick="selectEwallet(this)">OVO</div>
+                                    <div class="ewallet-item" onclick="selectEwallet(this)">DANA</div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Phone Number linked to E-Wallet</label>
+                                    <input type="text" placeholder="e.g., 081234567890">
+                                </div>
+                            </div>
+
+                            <div id="detail-card" class="payment-dynamic-section">
+                                <div class="card-icons">
+                                    <i class="fab fa-cc-mastercard"></i>
+                                    <i class="fab fa-cc-visa"></i>
+                                </div>
+                                <div class="input-group">
+                                    <label>Card Number</label>
+                                    <input type="text" placeholder="0000 0000 0000 0000">
+                                </div>
+                                <div class="input-row">
+                                    <div class="input-group">
+                                        <label>Expiry Date</label>
+                                        <input type="text" placeholder="MM/YY">
+                                    </div>
+                                    <div class="input-group">
+                                        <label>CVV</label>
+                                        <input type="password" placeholder="123">
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Cardholder Name</label>
+                                    <input type="text" placeholder="Name on card">
+                                </div>
+                            </div>
+
+                            <div id="detail-va" class="payment-dynamic-section">
+                                <p class="section-desc">Transfer the exact amount to the Virtual Account number below</p>
+                                <div class="va-list">
+                                    <div class="va-item">
+                                        <div class="va-bank">BCA Virtual Account</div>
+                                        <div class="va-number">8077 0812 3456 7890</div>
+                                    </div>
+                                    <div class="va-item">
+                                        <div class="va-bank">Mandiri Virtual Account</div>
+                                        <div class="va-number">8950 8123 4567 890</div>
+                                    </div>
+                                    <div class="va-item">
+                                        <div class="va-bank">BNI Virtual Account</div>
+                                        <div class="va-number">8200 0812 3456 7890</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checkout-right-col">
+                       <div class="checkout-box summary-box">
+                            <h3 class="box-title">Order Summary</h3>
+                            
+                            <div id="checkoutItemsContainer"></div>
+
+                            <div class="summary-divider"></div>
+
+                            <div class="summary-sub-line">
+                                <span>Subtotal</span>
+                                <span id="checkoutSubtotal">Rp 0</span>
+                            </div>
+                            <div class="summary-sub-line">
+                                <span>Tax (10%)</span>
+                                <span id="checkoutTax">Rp 0</span>
+                            </div>
+
+                            <div class="summary-total-line">
+                                <span>Total</span>
+                                <span class="total-amount" id="checkoutTotal">Rp 0</span>
+                            </div>
+                            
+                            <button class="btn-complete-payment" id="btnCompletePayment">Complete Payment</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="toastNotification" class="toast-notification">
+        <div class="toast-content">
+            <i id="toastIcon" class="fas fa-check-circle"></i>
+            <span id="toastMessage">Message goes here</span>
+        </div>
+    </div>
+
+    <script src="checkout.js"></script>
+</body>
+</html>

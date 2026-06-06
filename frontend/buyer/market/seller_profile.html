@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stokko - Seller Profile</title>
+    <link rel="stylesheet" href="seller_profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-logo">
+            <img src="../images/logoBlue.png" alt="STOKKO">
+            <span class="buyer-text">Buyer</span>
+        </div>
+
+        <div class="header-right">
+            <button class="btn-premium-top">
+                <i class="fas fa-crown"></i>
+                Upgrade To premium
+            </button>
+
+            <div class="user-profile">
+                <img src="../images/profile1.png" alt="User" class="avatar">
+                <div class="user-info">
+                    <span class="user-name">Annie Leblanc</span>
+                    <span class="user-email">annie.leblanc@example.com</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <nav class="sidebar-menu">
+                <a href="dashboard_buyer.html" class="menu-item active">
+                    <i class="fas fa-box-open"></i>
+                    Market
+                </a>
+                <a href="../orders/orders_buyer.html" class="menu-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </a>
+                <a href="../notification/notification_buyer.html" class="menu-item">
+                    <i class="fas fa-bell"></i>
+                    Notification
+                </a>
+                <a href="../profilensubscription/subscription_buyer.html" class="menu-item">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+                <a href="../priceInsights/priceInsight.html" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    Price Insights
+                </a>
+            </nav>
+
+            <div class="go-premium-card">
+                <i class="fas fa-crown"></i>
+                <h3>Go Premium</h3>
+                <p>Unlock Analytics, Smart Pricing & more!</p>
+                <button class="btn-upgrade-now">
+                    Upgrade Now
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <button class="btn-back" onclick="window.location.href='detail.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Market
+                </button>
+
+                <div class="seller-hero">
+                    <img id="sellerBanner" src="" alt="Farm Banner">
+                </div>
+
+                <div class="seller-profile-card">
+                    <div class="card-header-top">
+                        <div class="store-brand">
+                            <div class="store-logo-icon" id="sellerLogoIcon"></div>
+                            <div class="store-names">
+                                <h2 id="sellerNameDisplay">Store Name <i class="fas fa-check-circle verified-blue"></i></h2>
+                                <span class="role-seller">Verified Seller</span>
+                            </div>
+                        </div>
+                        <button class="btn-chat-seller"><i class="far fa-comment"></i> Chat Seller</button>
+                    </div>
+                    
+                    <p class="store-bio" id="sellerBioText"></p>
+                    
+                    <div class="store-contact-info">
+                        <div class="contact-item" id="infoLoc"></div>
+                        <div class="contact-item" id="infoRes"></div>
+                        <div class="contact-item" id="infoPhone"></div>
+                        <div class="contact-item" id="infoMail"></div>
+                    </div>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-icon blue"><i class="fas fa-box"></i></div>
+                        <div class="stat-info">
+                            <span>Product</span>
+                            <h4 id="statProds">0</h4>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon orange"><i class="fas fa-shopping-basket"></i></div>
+                        <div class="stat-info">
+                            <span>Total Sales</span>
+                            <h4 id="statSales">0</h4>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon red"><i class="fas fa-history"></i></div>
+                        <div class="stat-info">
+                            <span>Response Time</span>
+                            <h4 id="statRes">0</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toggle-capsule-container">
+                    <div class="toggle-capsule">
+                        <button class="capsule-btn active" data-tab="products">Products</button>
+                        <button class="capsule-btn" data-tab="about">About</button>
+                    </div>
+                </div>
+
+                <div id="products-content" class="tab-view active">
+                    <div class="products-grid" id="sellerProductsGrid"></div>
+                </div>
+
+                <div id="about-content" class="tab-view">
+                    <div class="about-seller-card">
+                        <h3 id="aboutStoreTitle">About Store</h3>
+                        <div class="about-block">
+                            <h4>Our Story</h4>
+                            <p id="aboutStoreStory">...</p>
+                        </div>
+                        <div class="about-block">
+                            <h4>Why Choose Us?</h4>
+                            <ul class="why-bullet-list">
+                                <li>100% Organic and Fresh Products</li>
+                                <li>Fast and Reliable Delivery</li>
+                                <li>Competitive Pricing</li>
+                            </ul>
+                        </div>
+                        <div class="about-meta">
+                            <div class="meta-box">
+                                <span>Member Since</span>
+                                <p id="metaMember">...</p>
+                            </div>
+                            <div class="meta-box">
+                                <span>Location</span>
+                                <p id="metaLoc">...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    <script src="../../dummy_data.js"></script>
+    <script src="seller_profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stokko - Market Buyer</title>
+    <link rel="stylesheet" href="dashboard_buyer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-logo">
+            <img src="../images/logoBlue.png" alt="STOKKO">
+            <span class="buyer-text">Buyer</span>
+        </div>
+        <div class="header-right">
+            <button class="btn-premium-top">
+                <i class="fas fa-crown"></i> Upgrade To premium
+            </button>
+            <div class="user-profile">
+                <img src="../images/profile1.png" alt="User" class="avatar">
+                <div class="user-info">
+                    <span class="user-name">Annie Leblanc</span>
+                    <span class="user-email">annie.leblanc@example.com</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item active"><i class="fas fa-box-open"></i> Market</a>
+                <a href="../orders/orders_buyer.html" class="menu-item"><i class="fas fa-shopping-cart"></i> Orders</a>
+                <a href="../notification/notification_buyer.html" class="menu-item"><i class="fas fa-bell"></i> Notification</a>
+                <a href="../profilensubscription/subscription_buyer.html" class="menu-item"><i class="fas fa-user"></i> Profile</a>
+                <a href="../priceInsights/priceInsight.html" class="menu-item"><i class="fas fa-chart-bar"></i> Price Insights</a>
+            </nav>
+            <div class="go-premium-card">
+                <i class="fas fa-crown"></i>
+                <h3>Go Premium</h3>
+                <p>Unlock Analytics, Smart Pricing & more!</p>
+                <button class="btn-upgrade-now">Upgrade Now</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="dashboard-body">
+                <div class="welcome-text">
+                    <h1>Market</h1>
+                    <p>Manage your product inventory</p>
+                </div>
+
+                <div class="promo-banner">
+                    <div class="promo-slider">
+                        <img src="../images/pic1.png" alt="Promo Banner">
+                    </div>
+                    <div class="dots-container">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+
+                <div class="search-section">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search for products...">
+                    </div>
+                    <div class="category-filters">
+                        <span class="filter-pill active">All</span>
+                        <span class="filter-pill">Meat</span>
+                        <span class="filter-pill">Fruits</span>
+                        <span class="filter-pill">Vegetables</span>
+                        <span class="filter-pill">Dairy</span>
+                    </div>
+                </div>
+
+                <div class="product-grid" id="productGrid"></div>
+            </section>
+        </main>
+
+        <div class="floating-cart" id="floatingCartBtn">
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="dashboard_buyer.js"></script>
+</body>
+</html>

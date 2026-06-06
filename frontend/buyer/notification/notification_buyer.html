@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stokko - Notifications</title>
+
+    <link rel="stylesheet" href="notification_buyer.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-logo">
+            <img src="../images/logoBlue.png" alt="STOKKO">
+            <span class="buyer-text">Buyer</span>
+        </div>
+
+        <div class="header-right">
+            <button class="btn-premium-top">
+                <i class="fas fa-crown"></i>
+                Upgrade To premium
+            </button>
+
+            <div class="user-profile">
+                <img src="../images/profile1.png" alt="User" class="avatar">
+
+                <div class="user-info">
+                    <span class="user-name">Annie Leblanc</span>
+                    <span class="user-email">annie.leblanc@example.com</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <nav class="sidebar-menu">
+                <a href="../market/dashboard_buyer.html" class="menu-item">
+                    <i class="fas fa-box-open"></i>
+                    Market
+                </a>
+
+                <a href="../orders/orders_buyer.html" class="menu-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </a>
+
+                <a href="#" class="menu-item active">
+                    <i class="fas fa-bell"></i>
+                    Notification
+                </a>
+
+                <a href="../profilensubscription/subscription_buyer.html" class="menu-item">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+
+                <a href="../priceInsights/priceInsight.html" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    Price Insights
+                </a>
+            </nav>
+
+            <div class="go-premium-card">
+                <i class="fas fa-crown"></i>
+
+                <h3>Go Premium</h3>
+
+                <p>Unlock Analytics, Smart Pricing & more!</p>
+
+                <button class="btn-upgrade-now">
+                    Upgrade Now
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="notification-body">
+                <div class="header-content">
+                    <div>
+                        <h1>Notifications</h1>
+                        <p class="unread-count" id="unread-counter">
+                            Loading...
+                        </p>
+                    </div>
+
+                    <button class="btn-mark-all">
+                        <i class="far fa-check-circle"></i>
+                        Mark all as read
+                    </button>
+                </div>
+
+                <div
+                    class="notification-list"
+                    id="notification-container"
+                ></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="notification_buyer.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stokko - Product Detail</title>
+    <link rel="stylesheet" href="detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-logo">
+            <img src="../images/logoBlue.png" alt="STOKKO">
+            <span class="buyer-text">Buyer</span>
+        </div>
+
+        <div class="header-right">
+            <button class="btn-premium-top">
+                <i class="fas fa-crown"></i>
+                Upgrade To premium
+            </button>
+
+            <div class="user-profile">
+                <img src="../images/profile1.png" alt="User" class="avatar">
+                <div class="user-info">
+                    <span class="user-name">Annie Leblanc</span>
+                    <span class="user-email">annie.leblanc@example.com</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <nav class="sidebar-menu">
+                <a href="dashboard_buyer.html" class="menu-item active">
+                    <i class="fas fa-box-open"></i>
+                    Market
+                </a>
+                <a href="../orders/orders_buyer.html" class="menu-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </a>
+                <a href="../notification/notification_buyer.html" class="menu-item">
+                    <i class="fas fa-bell"></i>
+                    Notification
+                </a>
+                <a href="../profilensubscription/subscription_buyer.html" class="menu-item">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+                <a href="../priceInsights/priceInsight.html" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    Price Insights
+                </a>
+            </nav>
+
+            <div class="go-premium-card">
+                <i class="fas fa-crown"></i>
+                <h3>Go Premium</h3>
+                <p>Unlock Analytics, Smart Pricing & more!</p>
+                <button class="btn-upgrade-now">
+                    Upgrade Now
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="dashboard-body">
+                <button class="btn-back" onclick="window.location.href='dashboard_buyer.html'">
+                    <i class="fas fa-arrow-left"></i> Back to Market
+                </button>
+
+                <div class="product-detail-container">
+                    <div class="product-visuals">
+                        <div class="main-image-wrapper">
+                            <img id="mainImage" src="" alt="Product">
+                        </div>
+                        <div class="thumbnail-gallery">
+                            <img class="thumb active" id="thumb1" src="" onclick="changeImage(this)">
+                            <img class="thumb" id="thumb2" src="" onclick="changeImage(this)">
+                            <img class="thumb" id="thumb3" src="" onclick="changeImage(this)">
+                        </div>
+                    </div>
+
+                    <div class="product-info">
+                        <h1 id="detailTitle">Product Name</h1>
+                        <div class="badges-row">
+                            <span class="badge-verified"><i class="fas fa-check-circle"></i> Verified Seller</span>
+                            <span class="category-tag" id="detailCategory">Category</span>
+                        </div>
+
+                        <div class="price-stock-section">
+                            <h2 class="price-text" id="detailPrice">$0</h2>
+                            <p class="stock-text" id="detailStock">Stock : 0 available</p>
+                        </div>
+
+                        <div class="description-section">
+                            <h3>Description</h3>
+                            <p id="detailDesc">Description goes here...</p>
+                        </div>
+
+                        <div class="order-section">
+                            <h3>Quantity</h3>
+                            <div class="qty-controls">
+                                <button class="qty-btn" id="minusBtn"><i class="fas fa-minus"></i></button>
+                                <input type="number" value="1" id="qtyInput" class="qty-input" readonly>
+                                <button class="qty-btn" id="plusBtn"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="btn-add-cart" id="detailAddToCart">Add to Cart</button>
+                                <button class="btn-chat"><i class="far fa-comment"></i> Chat Seller</button>
+                            </div>
+                        </div>
+
+                        <div class="store-card">
+                            <div class="store-main">
+                                <img src="" alt="Store Logo" class="store-logo" id="storeLogo">
+                                <div class="store-details">
+                                    <div class="store-name">
+                                        <h4 id="storeNameTitle">Store Name</h4>
+                                        <i class="fas fa-check-circle verified-icon"></i>
+                                    </div>
+                                    <p id="storeLoc"><i class="fas fa-map-marker-alt"></i> Location</p>
+                                    <p id="storePhone"><i class="fas fa-phone-alt"></i> Phone</p>
+                                    <p id="storeMail"><i class="fas fa-envelope"></i> Email</p>
+                                </div>
+                                <button class="btn-view-profile" id="btnViewProfile">View Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="toastNotification" class="toast-notification">
+        <div class="toast-content">
+            <i id="toastIcon" class="fas fa-check-circle"></i>
+            <span id="toastMessage">Message goes here</span>
+        </div>
+    </div>
+
+    <script src="../../dummy_data.js"></script>
+    <script src="detail.js"></script>
+</body>
+</html>
