@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stokko - Orders</title>
+    <link rel="stylesheet" href="order_seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-logo">
+            <img src="../images/logoBlue.png" alt="STOKKO">
+            <span class="buyer-text">Seller</span>
+        </div>
+
+        <div class="header-right">
+            <button class="btn-premium-top">
+                <i class="fas fa-crown"></i>
+                Upgrade To premium
+            </button>
+
+            <div class="user-profile">
+                <img src="../images/img4.png" alt="User" class="avatar">
+                <div class="user-info">
+                    <span class="user-name">Alex Johnson</span>
+                    <span class="user-email" id="headerStoreName">Loading store...</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <nav class="sidebar-menu">
+                <a href="../dashboard/dashboard_seller.html" class="menu-item">
+                    <i class="fas fa-th-large"></i>
+                    Dashboard
+                </a>
+                <a href="../listing/listing_seller.html" class="menu-item">
+                    <i class="fas fa-box"></i>
+                    Listings
+                </a>
+                <a href="#" class="menu-item active">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </a>
+                <a href="../notification/notification_seller.html" class="menu-item">
+                    <i class="fas fa-bell"></i>
+                    Notification
+                </a>
+                <a href="../profilensubscription/subscription_seller.html" class="menu-item">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+                <a href="../analytics/analytics.html" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    Analytics
+                </a>
+            </nav>
+
+            <div class="go-premium-card">
+                <i class="fas fa-crown"></i>
+                <h3>Go Premium</h3>
+                <p>Unlock Analytics, Smart Pricing & more!</p>
+                <a href="../profilensubscription/subscription_seller.html" style="text-decoration: none;">
+                    <button class="btn-upgrade-now">
+                        Upgrade Now
+                    </button>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="order-body">
+                <h1>Orders</h1>
+                <p class="welcome-text">Manage and track your orders</p>
+
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <span>Total Order</span>
+                        <h2 id="sumTotal">0</h2>
+                    </div>
+                    <div class="summary-card">
+                        <span>Pending</span>
+                        <h2 class="text-yellow" id="sumPending">0</h2>
+                    </div>
+                    <div class="summary-card">
+                        <span>Delivery</span>
+                        <h2 class="text-blue" id="sumDelivery">0</h2>
+                    </div>
+                    <div class="summary-card">
+                        <span>Completed</span>
+                        <h2 class="text-green" id="sumCompleted">0</h2>
+                    </div>
+                    <div class="summary-card">
+                        <span>Revenue</span>
+                        <h2 id="sumRevenue">Rp 0</h2>
+                    </div>
+                </div>
+
+                <div class="filter-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search for products..." onkeyup="filterBySearch()">
+                    </div>
+                    <div class="status-dropdown-container" style="position: relative;">
+                        <div class="status-dropdown" onclick="toggleFilterList(event)">
+                            <span id="activeFilterLabel">All Status</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <ul id="filterList" class="status-dropdown-list">
+                            <li onclick="applyStatusFilter('all')">All Status</li>
+                            <li onclick="applyStatusFilter('pending')">Pending</li>
+                            <li onclick="applyStatusFilter('delivery')">Delivery</li>
+                            <li onclick="applyStatusFilter('completed')">Completed</li>
+                            <li onclick="applyStatusFilter('cancelled')">Cancelled</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <h3>Order List</h3>
+                    <table class="order-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Product</th>
+                                <th>Buyer</th>
+                                <th>Total Price</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orderTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="orders_seller.js"></script>
+</body>
+</html>

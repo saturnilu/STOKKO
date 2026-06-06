@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stokko - Dashboard Seller</title>
+    <link rel="stylesheet" href="dashboard_seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-logo">
+            <img src="../images/logoBlue.png" alt="STOKKO">
+            <span class="buyer-text">Seller</span>
+        </div>
+
+        <div class="header-right">
+            <button class="btn-premium-top">
+                <i class="fas fa-crown"></i>
+                Upgrade To premium
+            </button>
+
+            <div class="user-profile">
+                <img src="../images/img4.png" alt="User" class="avatar">
+                <div class="user-info">
+                    <span class="user-name">Alex Johnson</span>
+                    <span class="user-email">Loading store...</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <nav class="sidebar-menu">
+                <a href="dashboard_seller.html" class="menu-item active">
+                    <i class="fas fa-th-large"></i>
+                    Dashboard
+                </a>
+                <a href="../listing/listing_seller.html" class="menu-item">
+                    <i class="fas fa-box"></i>
+                    Listings
+                </a>
+                <a href="../orders/orders_seller.html" class="menu-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </a>
+                <a href="../notification/notification_seller.html" class="menu-item">
+                    <i class="fas fa-bell"></i>
+                    Notification
+                </a>
+                <a href="../profilensubscription/subscription_seller.html" class="menu-item">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+                <a href="../analytics/analytics.html" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    Analytics
+                </a>
+            </nav>
+
+            <div class="go-premium-card">
+                <i class="fas fa-crown"></i>
+                <h3>Go Premium</h3>
+                <p>Unlock Analytics, Smart Pricing & more!</p>
+                <a href="../profilensubscription/subscription_seller.html" style="text-decoration: none;">
+                    <button class="btn-upgrade-now">
+                        Upgrade Now
+                    </button>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="dashboard-body">
+                <div class="welcome-section">
+                    <h1>Dashboard</h1>
+                    <p>Welcome back! Here's what's happening with your store.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-left">
+                            <span class="stat-label">Total Revenue</span>
+                            <h2 class="stat-value" id="totalRevenueStat">Rp 0</h2>
+                            <span class="trend-up">↗ +2.5%</span>
+                        </div>
+                        <div class="stat-icon-bg green-bg"><i class="fas fa-dollar-sign"></i></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-left">
+                            <span class="stat-label">Active Listings</span>
+                            <h2 class="stat-value" id="activeListingsStat">0</h2>
+                            <span class="stat-sub">From your store</span>
+                        </div>
+                        <div class="stat-icon-bg blue-bg"><i class="fas fa-cube"></i></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-left">
+                            <span class="stat-label">Total Orders</span>
+                            <h2 class="stat-value" id="totalOrdersStat">0</h2>
+                            <span class="stat-sub" id="pendingOrdersStat">0 pending</span>
+                        </div>
+                        <div class="stat-icon-bg purple-bg"><i class="fas fa-shopping-cart"></i></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-left">
+                            <span class="stat-label">Total Views</span>
+                            <h2 class="stat-value" id="totalViewsStat">0</h2>
+                            <span class="trend-up">↗ +8.2%</span>
+                        </div>
+                        <div class="stat-icon-bg orange-bg"><i class="fas fa-eye"></i></div>
+                    </div>
+                </div>
+
+                <div class="middle-grid">
+                    <div class="card-box">
+                        <h3>Recent Orders</h3>
+                        <div id="recentOrdersContainer">
+                        </div>
+                    </div>
+
+                    <div class="card-box">
+                        <h3>Top Performing Products</h3>
+                        <div id="topProductsContainer">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-box quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="actions-container">
+                        <a href="../listing/listing_seller.html" class="action-item">
+                            <i class="fas fa-cube icon-blue"></i>
+                            <div class="text"><strong>Add Product</strong><p>Create new listing</p></div>
+                        </a>
+                        <a href="../orders/orders_seller.html" class="action-item">
+                            <i class="fas fa-shopping-cart icon-purple"></i>
+                            <div class="text"><strong>View Orders</strong><p>Manage orders</p></div>
+                        </a>
+                        <a href="../analytics/analytics.html" class="action-item">
+                            <i class="fas fa-chart-line icon-green"></i>
+                            <div class="text"><strong>Analytics</strong><p>View insights</p></div>
+                        </a>
+                        <a href="../listing/listing_seller.html" class="action-item">
+                            <i class="fas fa-eye icon-orange"></i>
+                            <div class="text"><strong>Boost Listing</strong><p>Increase visibility</p></div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../../dummy_data.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

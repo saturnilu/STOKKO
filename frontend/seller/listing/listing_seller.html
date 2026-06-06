@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stokko - Product Listings</title>
+    <link rel="stylesheet" href="listing_seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-logo">
+            <img src="../images/logoBlue.png" alt="STOKKO">
+            <span class="buyer-text">Seller</span>
+        </div>
+
+        <div class="header-right">
+            <button class="btn-premium-top">
+                <i class="fas fa-crown"></i>
+                Upgrade To premium
+            </button>
+
+            <div class="user-profile">
+                <img src="../images/img4.png" alt="User" class="avatar">
+                <div class="user-info">
+                    <span class="user-name">Alex Johnson</span>
+                    <span class="user-email" id="headerStoreName">Loading store...</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <nav class="sidebar-menu">
+                <a href="../dashboard/dashboard_seller.html" class="menu-item">
+                    <i class="fas fa-th-large"></i>
+                    Dashboard
+                </a>
+                <a href="#" class="menu-item active">
+                    <i class="fas fa-box"></i>
+                    Listings
+                </a>
+                <a href="../orders/orders_seller.html" class="menu-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </a>
+                <a href="../notification/notification_seller.html" class="menu-item">
+                    <i class="fas fa-bell"></i>
+                    Notification
+                </a>
+                <a href="../profilensubscription/subscription_seller.html" class="menu-item">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+                <a href="../analytics/analytics.html" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    Analytics
+                </a>
+            </nav>
+
+            <div class="go-premium-card">
+                <i class="fas fa-crown"></i>
+                <h3>Go Premium</h3>
+                <p>Unlock Analytics, Smart Pricing & more!</p>
+                <a href="../profilensubscription/subscription_seller.html" style="text-decoration: none;">
+                    <button class="btn-upgrade-now">
+                        Upgrade Now
+                    </button>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="listing-body">
+                <div class="listing-title">
+                    <h1>Product Listings</h1>
+                    <p>Manage your product inventory</p>
+                </div>
+
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search for products...">
+                </div>
+
+                <button id="openAddModal" class="btn-save btn-add-custom">
+                    <i class="fas fa-plus"></i> Add Product
+                </button>
+
+                <div class="product-grid" id="productGrid">
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2>Edit Product</h2>
+                    <p>Make changes to your existing product</p>
+                </div>
+                <span class="close-btn">&times;</span>
+            </div>
+            
+            <form class="edit-form" id="editProductForm">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="editName" placeholder="Enter product name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="editCategory">
+                        <option value="Dairy">Dairy</option>
+                        <option value="Fruits">Fruits</option>
+                        <option value="Snacks">Snacks</option>
+                        <option value="Vegetables">Vegetables</option>
+                        <option value="Meat">Meat</option>
+                        <option value="Drinks">Drinks</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Price (Rp)</label>
+                        <input type="number" id="editPrice" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Stock</label>
+                        <input type="number" id="editStock" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-save">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2>Add New Product</h2>
+                    <p>Create a new listing for your store</p>
+                </div>
+                <span class="close-add-btn">&times;</span>
+            </div>
+            
+            <form class="add-form" id="addProductForm">
+                <div class="form-group">
+                    <label>Product Image</label>
+                    <div class="image-upload-container">
+
+                    <input 
+                        type="file" 
+                        id="addProductImage" 
+                        accept="image/png, image/jpeg, image/jpg"
+                    >
+
+                    <div class="upload-placeholder">
+                        <i class="fas fa-cloud-upload-alt"></i> 
+                        <span>Upload JPG, PNG (Max 2MB)</span>
+                    </div>
+
+                    <img
+                        id="imagePreview"
+                        style="
+                            display:none;
+                            width:100%;
+                            max-height:100px;
+                            object-fit:cover;
+                            border-radius:12px;
+                            margin-top:10px;
+                        "
+                    />
+
+                </div>
+            </div>
+
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="addName" placeholder="e.g. Organic Spinach" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="addCategory">
+                        <option value="Dairy">Dairy</option>
+                        <option value="Fruits">Fruits</option>
+                        <option value="Snacks">Snacks</option>
+                        <option value="Vegetables">Vegetables</option>
+                        <option value="Meat">Meat</option>
+                        <option value="Drinks">Drinks</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Price (Rp)</label>
+                        <input type="number" id="addPrice" placeholder="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Stock</label>
+                        <input type="number" id="addStock" placeholder="0" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel-add">Cancel</button>
+                    <button type="submit" class="btn-save">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content" style="max-width: 400px; text-align: center; padding: 40px 30px;">
+            <i class="fas fa-exclamation-circle" style="font-size: 3.5rem; color: #ff4d4d; margin-bottom: 15px;"></i>
+            <h2 style="margin-bottom: 10px;">Are you sure?</h2>
+            <p style="color: #777; margin-bottom: 25px; font-size: 0.95rem;">Do you really want to delete this product? This action cannot be undone.</p>
+            <div style="display: flex; justify-content: center; gap: 15px;">
+                <button type="button" class="btn-cancel" id="cancelDeleteBtn">Cancel</button>
+                <button type="button" class="btn-delete-confirm" id="confirmDeleteBtn">Yes, Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="listing_seller.js"></script>
+</body>
+</html>

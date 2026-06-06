@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stokko - Profile & Subscription</title>
+    <link rel="stylesheet" href="subscription_seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-logo">
+            <img src="../images/logoBlue.png" alt="STOKKO">
+            <span class="buyer-text">Seller</span>
+        </div>
+
+        <div class="header-right">
+            <button class="btn-premium-top">
+                <i class="fas fa-crown"></i>
+                Upgrade To premium
+            </button>
+
+            <div class="user-profile">
+                <img src="../images/img4.png" alt="User" class="avatar">
+                <div class="user-info">
+                    <span class="user-name">Alex Johnson</span>
+                    <span class="user-email">Loading store...</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <nav class="sidebar-menu">
+                <a href="../dashboard/dashboard_seller.html" class="menu-item">
+                    <i class="fas fa-th-large"></i>
+                    Dashboard
+                </a>
+                <a href="../listing/listing_seller.html" class="menu-item">
+                    <i class="fas fa-box"></i>
+                    Listings
+                </a>
+                <a href="../orders/orders_seller.html" class="menu-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </a>
+                <a href="../notification/notification_seller.html" class="menu-item">
+                    <i class="fas fa-bell"></i>
+                    Notification
+                </a>
+                <a href="#" class="menu-item active">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </a>
+                <a href="../analytics/analytics.html" class="menu-item">
+                    <i class="fas fa-chart-bar"></i>
+                    Analytics
+                </a>
+            </nav>
+
+            <div class="go-premium-card">
+                <i class="fas fa-crown"></i>
+                <h3>Go Premium</h3>
+                <p>Unlock Analytics, Smart Pricing & more!</p>
+                <a href="../profilensubscription/subscription_seller.html" style="text-decoration: none;">
+                    <button class="btn-upgrade-now">
+                        Upgrade Now
+                    </button>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section class="subscription-body">
+                <h1>Profile & Subscription</h1>
+                <p class="welcome-text">Manage your account and subscription settings</p>
+
+                <div class="tab-container">
+                    <button id="btn-profile" class="tab-btn active" onclick="switchTab('profile')">Profile</button>
+                    <button id="btn-sub" class="tab-btn" onclick="switchTab('subscription')">Subscription</button>
+                </div>
+
+                <div id="profile-content" class="tab-content active">
+                    <div class="profile-header-card">
+                        <div class="profile-main-info">
+                            <div id="avatarWrapper" style="position: relative; display: inline-block;">
+                                <img src="../images/img4.png" alt="User Avatar" class="profile-big-avatar" id="profileBigAvatar">
+                                <div id="editAvatarOverlay" class="edit-avatar-overlay" style="display: none;">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                                <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                            </div>
+                            <div class="profile-text-info">
+                                <h2 id="profileName">Alex Johnson</h2>
+                                <p class="store-subtitle" id="profileStore">Fresh Harvest Market</p>
+                                <p class="member-since">Member since <br><strong>12/1/2025</strong></p>
+                            </div>
+                        </div>
+                        <button class="btn-edit-profile" id="btnEditProfile">Edit Profile</button>
+                        <div class="edit-actions" id="editActions" style="display: none;">
+                            <button class="btn-cancel" id="btnCancelEdit">Cancel</button>
+                            <button class="btn-save" id="btnSaveProfile">Save</button>
+                        </div>
+                    </div>
+
+                    <div class="personal-info-card">
+                        <h3>Personal Information</h3>
+                        <div class="info-grid">
+                            <div class="info-group">
+                                <label>Full Name</label>
+                                <input type="text" value="Alex Johnson" id="inputFullName" readonly>
+                            </div>
+                            <div class="info-group">
+                                <label>Store Name</label>
+                                <input type="text" value="Fresh Harvest Market" id="inputStoreName" readonly>
+                            </div>
+                            <div class="info-group">
+                                <label>Email</label>
+                                <input type="email" value="alex.johnson@example.com" id="inputEmail" readonly>
+                            </div>
+                            <div class="info-group">
+                                <label>Phone</label>
+                                <input type="text" value="+62 821 2471 5771" id="inputPhone" readonly>
+                            </div>
+                            <div class="info-group full-width">
+                                <label>Address</label>
+                                <input type="text" value="Jl. Teknologi No 47, Jakarta Selatan, Indonesia" id="inputAddress" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="role-selection-card">
+                        <h3>Account Role</h3>
+                        <div class="role-status-container">
+                            <div class="role-details">
+                                <span class="role-label">Current Role</span>
+                                <p class="role-description">You Are Currently Using The Platform As A Seller</p>
+                            </div>
+                            <button class="btn-switch-role" onclick="handleRoleSwitch()">Switch to Buyer</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="subscription-content" class="tab-content">
+                    <!-- Isinya tetap sama seperti kode aslimu -->
+                    <div class="locked-banner">
+                        <div class="banner-inner">
+                            <div class="banner-header">
+                                <i class="fas fa-crown crown-icon"></i>
+                                <h2>Unlock Premium Features</h2>
+                            </div>
+                            <p class="banner-subtitle">Take your selling to the next level with advanced tools and insights</p>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <div class="icon-box blue"><i class="fas fa-chart-line"></i></div>
+                                    <div class="text">
+                                        <h4>Advanced Analytics</h4>
+                                        <p>Get detailed insights on sales, revenue, and customer behavior</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="icon-box purple"><i class="fas fa-bolt"></i></div>
+                                    <div class="text">
+                                        <h4>Smart Pricing</h4>
+                                        <p>Pricing recommendations based on market trends</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="icon-box green"><i class="fas fa-rocket"></i></div>
+                                    <div class="text">
+                                        <h4>Boost Listings</h4>
+                                        <p>Increase visibility and reach more customers</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="icon-box yellow"><i class="fas fa-award"></i></div>
+                                    <div class="text">
+                                        <h4>Product Performance</h4>
+                                        <p>Build trust with a verified seller badge</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pricing-container">
+                        <div class="price-card">
+                            <h3>Basic</h3>
+                            <div class="price">Free</div>
+                            <ul class="benefit-list">
+                                <li><i class="fas fa-check"></i> Up to 10 product listings</li>
+                                <li><i class="fas fa-check"></i> Basic order management</li>
+                                <li><i class="fas fa-check"></i> Email support</li>
+                                <li><i class="fas fa-check"></i> Standard seller profile</li>
+                            </ul>
+                            <button class="btn-plan disabled">Current Plan</button>
+                        </div>
+
+                        <div class="price-card popular">
+                            <div class="popular-badge">Most Popular</div>
+                            <h3>Premium</h3>
+                            <div class="price">Rp 99.000<span>/month</span></div>
+                            <ul class="benefit-list">
+                                <li><i class="fas fa-check"></i> Smart Pricing AI</li>
+                                <li><i class="fas fa-check"></i> Advanced Analytics dashboard</li>
+                                <li><i class="fas fa-check"></i> Boost Listing</li>
+                                <li><i class="fas fa-check"></i> Verified seller badge</li>
+                                <li><i class="fas fa-check"></i> Custom store branding</li>
+                                <li><i class="fas fa-check"></i> Priority support</li>
+                            </ul>
+                            <a href="../../buyer/checkout/checkout_subs.html?plan=monthly&price=99000">
+                                <button class="btn-plan dark">Upgrade Now</button>
+                            </a>
+                        </div>
+
+                        <div class="price-card">
+                            <h3>Premium</h3>
+                            <div class="price">Rp 990.000<span>/Yearly</span></div>
+                            <ul class="benefit-list">
+                                <li><i class="fas fa-check"></i> Unlimited product listings</li>
+                                <li><i class="fas fa-check"></i> Advanced Analytics dashboard</li>
+                                <li><i class="fas fa-check"></i> Smart Pricing recommendations</li>
+                                <li><i class="fas fa-check"></i> Boost Listing</li>
+                                <li><i class="fas fa-check"></i> Verified seller badge</li>
+                                <li><i class="fas fa-check"></i> Priority support</li>
+                                <li><i class="fas fa-check"></i> Custom store branding</li>
+                            </ul>
+                            <a href="../../buyer/checkout/checkout_subs.html?plan=yearly&price=990000">
+                                <button class="btn-plan dark">Upgrade Now</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="toast-notification" id="toastNotification">
+        <i class="fas fa-check-circle" id="toastIcon"></i>
+        <span id="toastMessage">Success!</span>
+    </div>
+
+    <script src="../../dummy_data.js"></script>
+    <script src="subscription_seller.js"></script>
+</body>
+</html>
