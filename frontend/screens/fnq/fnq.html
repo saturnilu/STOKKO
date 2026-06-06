@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - STOKKO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="fnq.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="../images/logoBlue.png" alt="Stokko Logo" class="nav-logo-img">
+            </div>
+            <nav class="nav-links">
+                <a href="../landing/landing.html">Features</a>
+                <a href="#" class="active">FAQ</a>
+                <a href="../privacy policy/privacyPolicy.html">Privacy Policy</a>
+                <a href="../aboutUs/about_us.html">About Us</a>
+            </nav>
+            <div class="nav-icons">
+                <i class="far fa-user-circle"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="faq-page">
+        <h1 class="main-title">Have any questions?</h1>
+        
+        <div class="faq-container">
+            <div class="illustration-side">
+                <img src="../images/question.png" alt="FAQ Illustration">
+            </div>
+
+            <div class="accordion-side">
+                <h2 class="faq-label">FAQ</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Apa itu STOKKO?
+                            <span class="icon"></span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>STOKKO adalah platform marketplace dan food price intelligence yang membantu buyer dan seller memantau harga pangan, mencari supplier, serta menganalisis tren pasar.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Siapa yang bisa menggunakan STOKKO?
+                            <span class="icon"></span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>STOKKO dapat digunakan oleh: <br>
+                                - Buyer (pembeli) <br>
+                                - Seller / supplier
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Apakah STOKKO gratis?
+                            <span class="icon"></span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Ya. STOKKO menyediakan akun gratis dan premium dengan fitur tambahan untuk pengguna premium.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Bagaimana cara mendaftar akun?
+                            <span class="icon"></span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Pengguna dapat mendaftar menggunakan email dan password melalui halaman sign up aplikasi.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Apakah data harga di STOKKO selalu update?
+                            <span class="icon"></span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Ya, data harga diperbarui secara berkala untuk memberikan informasi harga pangan terbaru.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Apakah transaksi di STOKKO aman?
+                            <span class="icon"></span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>STOKKO menggunakan sistem keamanan dan verifikasi akun untuk membantu menjaga keamanan transaksi pengguna.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            Apakah buyer bisa memberikan review?
+                            <span class="icon"></span>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Ya, buyer dapat memberikan rating dan review setelah transaksi selesai.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-column">
+                <h3>Account</h3>
+                <a href="#">My Account</a>
+                <a href="../register/register.html">Login / Register</a>
+                <a href="../../seller/dashboard/dashboard_seller.html">Shop</a>
+                <a href="../../buyer/market/dashboard_buyer.html">Cart</a>
+            </div>
+            <div class="footer-column">
+                <h3>Company</h3>
+                <a href="../privacy policy/privacyPolicy.html">Terms of Service</a>
+                <a href="../privacy policy/privacyPolicy.html">Privacy Policy</a>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <p>Jl. Teknologi No 47, Jakarta Selatan, Indonesia</p>
+                <p>(+62) 82124715771</p>
+                <p>Stokko@gmail.com</p>
+            </div>
+            <div class="footer-column brand-section">
+                <h1 class="footer-logo">STOKKO</h1>
+                <p>Smart food pricing in one app. Track prices and trends as a Buyer, list and optimize sales as a Seller. Buy smarter, sell smarter.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>STOKKO &copy; 2026, All Rights Reserved</p>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

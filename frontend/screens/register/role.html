@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stokko - Login</title>
+    <link rel="stylesheet" href="../register/role.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <main class="main-content">
+    <div class="login-wrapper">
+        <img src="../images/img2.png" alt="Background Decoration" class="bg-layer">
+        <div class="login-card">
+            <div class="card-left">
+                <img src="../images/img1.png" alt="Grocery Bag">
+            </div>
+            <div class="card-right">
+                <h2>Login as Seller or Buyer</h2>
+                <div class="auth-options">
+                   <button class="auth-btn" onclick="selectRole('buyer')">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Buyer</span>
+                    </button>
+                    <button class="auth-btn" onclick="selectRole('seller')">
+                        <i class="fas fa-tag"></i>
+                        <span>Seller</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-column">
+            <h3>Account</h3>
+            <a href="#">My Account</a>
+            <a href="#">Login / Register</a>
+            <a href="#">Shop</a>
+            <a href="#">Cart</a>
+        </div>
+        <div class="footer-column">
+            <h3>Company</h3>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <div class="footer-column">
+            <h3>Support</h3>
+            <p>Jl. Teknologi No 47, Jakarta Selatan, Indonesia</p>
+            <p>(+62) 82124715771</p>
+            <p>Stokko@gmail.com</p>
+        </div>
+        <div class="footer-column brand-section">
+            <h1 class="footer-logo">STOKKO</h1>
+            <p>Smart food pricing in one app. Track prices and trends as a Buyer, list and optimize sales as a Seller. Buy smarter, sell smarter.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>STOKKO &copy; 2026, All Rights Reserved</p>
+    </div>
+</footer>
+
+<script src="../login/auth-logic.js"></script>
+</body>
+</html>
