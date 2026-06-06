@@ -20,6 +20,7 @@
 body {
     background-color: var(--bg-main-abu);
     color: var(--text-dark);
+    overflow-y: scroll;
 }
 
 .main-header {
@@ -246,17 +247,11 @@ body {
     font-weight: 800;
 }
 
-.stat-value.warning { 
-    color: #f39c12; 
-}
+.stat-value.warning { color: #f39c12; }
 
-.stat-value.info { 
-    color: var(--blue); 
-}
+.stat-value.info { color: var(--blue); }
 
-.stat-value.success { 
-    color: var(--success); 
-}
+.stat-value.success { color: var(--success); }
 
 .filter-section {
     display: flex;
