@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (order.status === 'pending')   countPending++;
             if (order.status === 'shipped')   countDelivery++;
             if (order.status === 'delivered') countCompleted++;
-            if (order.status !== 'cancelled') totalRevenue += (order.seller_total || 0);
+            if (order.status !== 'cancelled') totalRevenue += Number(order.seller_total || 0);
         });
 
         const filtered = sellerOrders.filter(order => {

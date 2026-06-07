@@ -34,6 +34,43 @@ const getById = async (req, res) => {
 const getBySeller = async (req, res) => {
   try {
     const products = await productModel.getBySeller(req.user.id);
+    
+    // ============================================================
+    // LOGIKA SMART PRICING  
+    // ============================================================
+    const productsWithInsights = products.map(product => {
+      // Jaga-jaga kalau format object DB-nya butuh diubah
+      const item = product.toJSON ? product.toJSON() : { ...product };
+
+      const views = item.views || 0;
+      const sales = item.sales_count || 0;
+      
+      const conversionRate = views > 0 ? (sales / views) * 100 : 0; 
+      
+      let action = 'Keep';
+      let suggestionText = 'Harga saat ini sudah wajar dan pas.';
+
+      // Hanya beri saran kalau udah dilihat lebih dari 20 kali biar datanya valid
+      if (views > 20) {
+          if (conversionRate < 5) {
+              action = 'Decrease';
+              suggestionText = 'Banyak dilihat tapi jarang dibeli. Coba turunkan harga sedikit.';
+          } else if (conversionRate >= 20) {
+              action = 'Increase';
+              suggestionText = 'Produk laku keras! Peluang bagus untuk menaikkan margin profit.';
+          }
+      }
+
+      return {
+          ...item,
+          recommendedAction: action,
+          reason: suggestionText
+      };
+    });
+ 
+
+    // Kirim data yang udah ada insight-nya ke frontend
+
     return successResponse(res, 'OK', { products });
   } catch (err) {
     console.error('getBySeller error:', err);

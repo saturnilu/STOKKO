@@ -16,15 +16,14 @@
         </div>
 
         <div class="header-right">
-            <button class="btn-premium-top">
-                <i class="fas fa-crown"></i>
-                Upgrade To premium
+            <button class="btn-premium-top" id="btnPremiumTop">
+                <i class="fas fa-crown"></i> Upgrade To Premium
             </button>
 
             <div class="user-profile">
                 <img src="../images/img4.png" alt="User" class="avatar">
                 <div class="user-info">
-                    <span class="user-name">Alex Johnson</span>
+                    <span class="user-name">Loading...</span>
                     <span class="user-email">Loading store...</span>
                 </div>
             </div>
@@ -32,108 +31,185 @@
     </header>
 
     <div class="dashboard-container">
-
         <aside class="sidebar">
             <nav class="sidebar-menu">
                 <a href="../dashboard/dashboard_seller.html" class="menu-item">
-                    <i class="fas fa-th-large"></i>
-                    Dashboard
+                    <i class="fas fa-th-large"></i> Dashboard
                 </a>
                 <a href="../listing/listing_seller.html" class="menu-item">
-                    <i class="fas fa-box"></i>
-                    Listings
+                    <i class="fas fa-box"></i> Listings
                 </a>
                 <a href="../orders/orders_seller.html" class="menu-item">
-                    <i class="fas fa-shopping-cart"></i>
-                    Orders
+                    <i class="fas fa-shopping-cart"></i> Orders
                 </a>
                 <a href="../notification/notification_seller.html" class="menu-item">
-                    <i class="fas fa-bell"></i>
-                    Notification
+                    <i class="fas fa-bell"></i> Notification
                 </a>
                 <a href="../profilensubscription/subscription_seller.html" class="menu-item">
-                    <i class="fas fa-user"></i>
-                    Profile
+                    <i class="fas fa-user"></i> Profile
                 </a>
                 <a href="#" class="menu-item active">
-                    <i class="fas fa-chart-bar"></i>
-                    Analytics
+                    <i class="fas fa-chart-bar"></i> Analytics
                 </a>
             </nav>
 
-            <div class="go-premium-card">
+            <div class="go-premium-card" id="goPremiumCard">
                 <i class="fas fa-crown"></i>
                 <h3>Go Premium</h3>
                 <p>Unlock Analytics, Smart Pricing & more!</p>
                 <a href="../profilensubscription/subscription_seller.html" style="text-decoration: none;">
-                    <button class="btn-upgrade-now">
-                        Upgrade Now
-                    </button>
+                    <button class="btn-upgrade-now">Upgrade Now</button>
                 </a>
             </div>
         </aside>
 
         <main class="main-content">
             <section class="analytics-body">
+                
                 <div class="analytics-title">
-                    <h1>Analytics</h1>
-                    <p>Advanced insights for Premium members</p>
+                    <h1>Analytics <span class="badge-premium" id="premiumBadge" style="display: none;"><i class="fas fa-crown"></i> Premium</span></h1>
+                    <p id="analyticsSubtitle">Advanced insights for Premium members</p>
                 </div>
 
-                <div class="locked-banner">
-                    <div class="banner-inner">
-                        <div class="banner-header">
-                            <i class="fas fa-crown crown-icon"></i>
-                            <h2>Unlock Premium Features</h2>
+                <div id="lockedContent">
+                    <div class="locked-banner">
+                        <div class="banner-inner">
+                            <div class="banner-header">
+                                <i class="fas fa-crown crown-icon"></i>
+                                <h2>Unlock Premium Features</h2>
+                            </div>
+                            <p class="banner-subtitle">Take your selling to the next level with advanced tools and insights</p>
+                            
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <div class="icon-box blue"><i class="fas fa-chart-line"></i></div>
+                                    <div class="text">
+                                        <h4>Advanced Analytics</h4>
+                                        <p>Get detailed insights on sales, revenue, and customer behavior</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="icon-box purple"><i class="fas fa-bolt"></i></div>
+                                    <div class="text">
+                                        <h4>Smart Pricing</h4>
+                                        <p>AI-powered pricing recommendations based on market trends</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="icon-box green"><i class="fas fa-rocket"></i></div>
+                                    <div class="text">
+                                        <h4>Boost Listings</h4>
+                                        <p>Increase visibility and reach more customers</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="icon-box yellow"><i class="fas fa-award"></i></div>
+                                    <div class="text">
+                                        <h4>Product Performance</h4>
+                                        <p>Build trust with a verified seller badge</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <a href="../profilensubscription/subscription_seller.html">
+                                <button class="btn-upgrade-banner">
+                                    <i class="fas fa-crown"></i> Upgrade To Premium
+                                </button>
+                            </a>
                         </div>
-                        <p class="banner-subtitle">Take your selling to the next level with advanced tools and insights</p>
-                        
-                        <div class="features-grid">
-                            <div class="feature-item">
-                                <div class="icon-box blue"><i class="fas fa-chart-line"></i></div>
-                                <div class="text">
-                                    <h4>Advanced Analytics</h4>
-                                    <p>Get detailed insights on sales, revenue, and customer behavior</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="icon-box purple"><i class="fas fa-bolt"></i></div>
-                                <div class="text">
-                                    <h4>Smart Pricing</h4>
-                                    <p>AI-powered pricing recommendations based on market trends</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="icon-box green"><i class="fas fa-rocket"></i></div>
-                                <div class="text">
-                                    <h4>Boost Listings</h4>
-                                    <p>Increase visibility and reach more customers</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="icon-box yellow"><i class="fas fa-award"></i></div>
-                                <div class="text">
-                                    <h4>Product Performance</h4>
-                                    <p>Build trust with a verified seller badge</p>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
 
-                        <a href="../profilensubscription/subscription_seller.html">
-                            <button class="btn-upgrade-banner"><i class="fas fa-crown"></i> Upgrade To premium</button>
-                        </a>
+                    <div class="locked-charts-container">
+                        <div class="chart-box-locked"><i class="fas fa-lock"></i></div>
+                        <div class="chart-box-locked"><i class="fas fa-lock"></i></div>
+                        <div class="chart-box-locked"><i class="fas fa-lock"></i></div>
                     </div>
                 </div>
 
-                <div class="locked-charts-container">
-                    <div class="chart-box-locked"><i class="fas fa-lock"></i></div>
-                    <div class="chart-box-locked"><i class="fas fa-lock"></i></div>
-                    <div class="chart-box-locked"><i class="fas fa-lock"></i></div>
+                <div id="premiumContent" style="display: none;">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="icon-box green-bg"><i class="fas fa-dollar-sign"></i></div>
+                            </div>
+                            <p class="stat-label">Total Revenue</p>
+                            <h2 class="stat-value" id="revenueStat">Rp 0</h2>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="icon-box blue-bg"><i class="fas fa-users"></i></div>
+                            </div>
+                            <p class="stat-label">Total Customers</p>
+                            <h2 class="stat-value" id="customerStat">0</h2>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="icon-box purple-bg"><i class="fas fa-shopping-bag"></i></div>
+                            </div>
+                            <p class="stat-label">Avg Order Value</p>
+                            <h2 class="stat-value" id="aovStat">Rp 0</h2>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="icon-box orange-bg"><i class="fas fa-chart-line"></i></div>
+                            </div>
+                            <p class="stat-label">Repeat Customers</p>
+                            <h2 class="stat-value" id="repeatStat">0</h2>
+                        </div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3 class="box-title">Revenue Trend</h3>
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="lower-grid">
+                        <div class="content-box">
+                            <h3 class="box-title">Top Performing Products</h3>
+                            <div class="chart-container">
+                                <canvas id="productsChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="content-box">
+                            <div class="box-header-flex">
+                                <h3 class="box-title">Smart Pricing Recommendations</h3>
+                                <span class="ai-badge"><i class="fas fa-robot"></i> AI-Powered</span>
+                            </div>
+                            <div class="recommendation-list" id="pricingRecList"></div>
+                        </div>
+                    </div>
+
+                    <div class="content-box">
+                        <h3 class="box-title">Customer Insights</h3>
+                        <div class="insights-grid">
+                            <div class="insight-item blue-soft">
+                                <i class="fas fa-users"></i>
+                                <h2 id="insightCustomer">0</h2>
+                                <p>Total Customers</p>
+                            </div>
+                            <div class="insight-item purple-soft">
+                                <i class="fas fa-undo"></i>
+                                <h2 id="insightRepeat">0</h2>
+                                <p>Repeat Customers</p>
+                            </div>
+                            <div class="insight-item green-soft">
+                                <i class="fas fa-dollar-sign"></i>
+                                <h2 id="insightAOV">Rp 0</h2>
+                                <p>Avg Order Value</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </section>
         </main>
     </div>
-    <script src="../../dummy_data.js"></script>
+
+    <!-- <script src="../../dummy_data.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="analytics_seller.js"></script>
 </body>
 </html>

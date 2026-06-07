@@ -108,7 +108,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     let totalRevenue = 0;
     let pendingCount = 0;
     sellerOrders.forEach(order => {
-        if (order.status !== 'cancelled') totalRevenue += (order.seller_total || 0);
+        // SUDAH DIPERBAIKI: Ditambahin Number() biar nggak numpuk teksnya <3
+        if (order.status !== 'cancelled') totalRevenue += Number(order.seller_total || 0);
         if (order.status === 'pending') pendingCount++;
     });
 
