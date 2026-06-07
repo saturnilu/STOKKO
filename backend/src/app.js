@@ -44,6 +44,7 @@ app.use('/api/orders',        orderRouter);
 app.use('/api/notifications', notifRouter);
 
 // Sprint 4 — akan ditambahkan nanti:
+app.use('/api/insights', require('./routes/insightRoutes'));
 
 // ─── Health check ─────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
