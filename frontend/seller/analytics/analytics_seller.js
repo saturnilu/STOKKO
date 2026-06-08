@@ -34,15 +34,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (btnPremiumTop) btnPremiumTop.style.display = "none";
         if (goPremiumCard) goPremiumCard.style.display = "none";
 
-        // Tarik Data
         await loadAnalyticsData();
     }
 });
 
-// Fungsi untuk format mata uang
 const formatRp = (num) => 'Rp ' + Math.floor(num).toLocaleString('id-ID');
 
-// Fungsi utama Fetch & Kalkulasi
 async function loadAnalyticsData() {
     const apiFetch = async (url) => {
         const token = localStorage.getItem('token');
@@ -50,7 +47,6 @@ async function loadAnalyticsData() {
     };
 
     try {
-        // Hanya perlu fetch orders dan products. Kita hitung analytics secara manual agar sinkron!
         const [resOrders, resProducts] = await Promise.all([
             apiFetch(`${API_URL}/orders`),
             apiFetch(`${API_URL}/products/seller/my`)
@@ -62,11 +58,10 @@ async function loadAnalyticsData() {
         const orders = jsonOrders.data?.orders || [];
         const products = jsonProducts.data?.products || [];
 
-        // 4. KALKULASI MANUAL (Sinkron dengan tabel pesanan)
+        // 4. KALKULASI MANUAL 
         let totalRevenue = 0;
         let validOrderCount = 0;
         
-        // Buat data untuk grafik mingguan sekaligus
         const days = ['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
         let revenueByDate = { "Sen": 0, "Sel": 0, "Rab": 0, "Kam": 0, "Jum": 0, "Sab": 0, "Min": 0 };
 
@@ -151,19 +146,18 @@ async function loadAnalyticsData() {
         if (recContainer) {
             if (topProducts.length) {
             recContainer.innerHTML = topProducts.map(p => {
-                // Ambil status & reason dari Backend (Default ke Keep kalau belum ada)
+
                 const action = p.recommendedAction || 'Keep';
                 const reason = p.reason || 'Recommendation: Keep current price';
                 
-                // Atur warna dan label persentase sesuai action
                 let badgeClass = "gray";
                 let badgeText = "0.0%";
 
                 if (action === 'Increase') {
-                    badgeClass = "green"; // Bakal jadi warna hijau
+                    badgeClass = "green";
                     badgeText = "↑ +5.0%";
                 } else if (action === 'Decrease') {
-                    badgeClass = "red";   // Bakal jadi warna merah
+                    badgeClass = "red";   
                     badgeText = "↓ -5.0%";
                 }
 

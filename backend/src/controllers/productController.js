@@ -23,7 +23,7 @@ const getById = async (req, res) => {
       return errorResponse(res, 'Produk tidak ditemukan.', 404);
     }
     await productModel.incrementViews(req.params.id);
-    return successResponse(res, 'OK', { product });
+    return successResponse(res, 'OK', { products: productsWithInsights });
   } catch (err) {
     console.error('getById product error:', err);
     return errorResponse(res, 'Terjadi kesalahan server.', 500);
@@ -51,7 +51,7 @@ const getBySeller = async (req, res) => {
       let suggestionText = 'Harga saat ini sudah wajar dan pas.';
 
       // Hanya beri saran kalau udah dilihat lebih dari 20 kali biar datanya valid
-      if (views > 20) {
+      if (views > 0) {
           if (conversionRate < 5) {
               action = 'Decrease';
               suggestionText = 'Banyak dilihat tapi jarang dibeli. Coba turunkan harga sedikit.';
