@@ -26,7 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let tempUserData = {};
 
     // BERUBAH: load data dari currentUser (hasil login) kalau belum pernah edit profil
-    const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
+    let currentUser = {};
+    try {
+        const _raw = localStorage.getItem('currentUser');
+        if (_raw) currentUser = JSON.parse(_raw) || {};
+    } catch (err) {
+        console.warn('Failed to parse currentUser from localStorage', err);
+        currentUser = {};
+    }
 
     function loadUserData() {
         const savedData = JSON.parse(localStorage.getItem('stokko_buyer_profile'));
@@ -56,9 +63,58 @@ document.addEventListener('DOMContentLoaded', () => {
             if (inputs[2]) inputs[2].value = currentUser.phone    || '';
             if (mainProfileName) mainProfileName.textContent = currentUser.username || '';
         }
+
+        
     }
 
     loadUserData();
+    fetchSubscriptionStatus();
+
+    // Apply premium UI changes safely (hide upgrade buttons for premium users)
+    function applyPremiumUI() {
+        try {
+            const isPremium = !!(currentUser && currentUser.isPremium);
+            if (!isPremium) return;
+
+            const btnPremiumTop = document.querySelector('.btn-premium-top');
+            const goPremiumCard = document.querySelector('.go-premium-card');
+            const btnUpgradeNow = document.querySelectorAll('.btn-upgrade-now');
+
+            if (btnUpgradeNow && btnUpgradeNow.forEach) {
+                btnUpgradeNow.forEach(btn => { if (btn && btn.style) btn.style.display = 'none'; });
+            }
+
+            if (btnPremiumTop && btnPremiumTop.style) btnPremiumTop.style.display = 'none';
+            if (goPremiumCard && goPremiumCard.style) goPremiumCard.style.display = 'none';
+        } catch (err) {
+            console.error('applyPremiumUI error:', err);
+        }
+    }
+
+    async function fetchSubscriptionStatus() {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+
+        try {
+            const res = await fetch('http://localhost:3000/api/subscriptions/me', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!res.ok) return;
+            const data = await res.json();
+            if (data.isPremium) {
+                currentUser.isPremium = true;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                applyPremiumUI();
+            }
+        } catch (err) {
+            console.warn('fetchSubscriptionStatus error:', err);
+        }
+    }
+
+    applyPremiumUI();
 
     function showToast(message, type = 'success') {
         const toast = document.getElementById('toastNotification');

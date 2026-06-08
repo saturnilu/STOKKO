@@ -50,13 +50,15 @@ const checkoutSubscription = async (req, res) => {
       return errorResponse(res, 'Plan tidak valid.', 400);
     }
 
-    if (!payment_method || !validPaymentMethods.includes(payment_method)) {
+    const paymentMethod = payment_method || 'qris';
+    if (!validPaymentMethods.includes(paymentMethod)) {
       return errorResponse(res, 'Metode pembayaran tidak valid.', 400);
     }
 
     const expectedPrice = SUBSCRIPTION_PRICES[plan];
-    if (price !== undefined && Number(price) !== expectedPrice) {
-      return errorResponse(res, `Harga harus sama dengan ${expectedPrice}.`, 400);
+    const paidPrice = price !== undefined ? Number(price) : expectedPrice;
+    if (isNaN(paidPrice) || paidPrice <= 0) {
+      return errorResponse(res, 'Harga pembayaran tidak valid.', 400);
     }
 
     await refreshSubscriptionStatus(req.user.id);
@@ -93,7 +95,7 @@ const checkoutSubscription = async (req, res) => {
          expires_at = VALUES(expires_at),
          is_active = VALUES(is_active),
          payment_ref = VALUES(payment_ref)`,
-      [req.user.id, plan, expectedPrice, startedAt, expiresAt, subscriptionRef]
+      [req.user.id, plan, paidPrice, startedAt, expiresAt, subscriptionRef]
     );
 
     await notifModel.create({
@@ -107,12 +109,12 @@ const checkoutSubscription = async (req, res) => {
       subscription: {
         user_id: req.user.id,
         plan,
-        price: expectedPrice,
+        price: paidPrice,
         started_at: startedAt,
         expires_at: expiresAt,
         is_active: 1,
         payment_ref: subscriptionRef,
-        payment_method,
+        payment_method: paymentMethod,
         payment_detail: payment_detail || null,
       },
       isPremium: true,
