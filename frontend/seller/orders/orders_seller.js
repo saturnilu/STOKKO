@@ -7,8 +7,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
     }
 
-    const headerStoreName = document.getElementById("headerStoreName");
-    if (headerStoreName) headerStoreName.textContent = currentUser.username;
+    // Tampilkan nama dan email store di header
+    const headerUserName = document.querySelector(".user-profile .user-name");
+    const headerUserEmail = document.querySelector(".user-profile .user-email");
+    if (headerUserName) headerUserName.textContent = currentUser.username || currentUser.name || "Seller";
+    if (headerUserEmail) headerUserEmail.textContent = currentUser.email || "";
 
     let sellerOrders        = [];
     let currentFilterStatus = 'all';

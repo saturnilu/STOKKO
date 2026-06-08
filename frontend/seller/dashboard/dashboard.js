@@ -15,8 +15,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
     }
 
-    const headerUserEmail = document.querySelector(".user-email");
-    if (headerUserEmail) headerUserEmail.textContent = currentUser.username;
+    const headerUserName = document.querySelector(".user-profile .user-name");
+    const headerUserEmail = document.querySelector(".user-profile .user-email");
+    if (headerUserName) headerUserName.textContent = currentUser.username || currentUser.name || "Seller";
+    if (headerUserEmail) headerUserEmail.textContent = currentUser.email || "";
 
     const recentOrdersContainer = document.getElementById("recentOrdersContainer");
     const totalRevenueStat      = document.getElementById("totalRevenueStat");

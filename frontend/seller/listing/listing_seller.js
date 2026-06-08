@@ -8,9 +8,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
     }
 
-    // Tampilkan nama store di header
-    const headerStoreName = document.getElementById("headerStoreName");
-    if (headerStoreName) headerStoreName.textContent = currentUser.username;
+    // Tampilkan nama dan email store di header
+    const headerUserName = document.querySelector(".user-profile .user-name");
+    const headerUserEmail = document.querySelector(".user-profile .user-email");
+    if (headerUserName) headerUserName.textContent = currentUser.username || currentUser.name || "Seller";
+    if (headerUserEmail) headerUserEmail.textContent = currentUser.email || "";
 
     const productGrid = document.getElementById("productGrid");
     const searchInput = document.getElementById("searchInput");

@@ -37,6 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // BERUBAH: load data dari currentUser (hasil login) kalau belum pernah edit profil
     const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
 
+    // Set Header Profile
+    const headerUserName = document.querySelector(".user-profile .user-name");
+    const headerUserEmail = document.querySelector(".user-profile .user-email");
+    if (headerUserName) headerUserName.textContent = currentUser.username || currentUser.name || "Seller";
+    if (headerUserEmail) headerUserEmail.textContent = currentUser.email || "";
+
     function loadUserData() {
         const savedData = JSON.parse(localStorage.getItem('stokko_seller_profile'));
         if (savedData) {
