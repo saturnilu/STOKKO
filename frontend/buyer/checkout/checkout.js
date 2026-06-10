@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (btnCompletePayment) {
         btnCompletePayment.addEventListener("click", async () => {
             if (!cartData.items.length) {
-                showToast("Keranjang kamu kosong ayangg! Belanja dulu gih.", "error");
+                showToast("Keranjang kamu kosong.", "error");
                 setTimeout(() => { window.location.href = "../market/dashboard_buyer.html"; }, 2000);
                 return;
             }

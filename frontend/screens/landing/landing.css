@@ -64,7 +64,7 @@ body {
 }
 
 .hero {
-    background: url('../images/landingIllust.png') no-repeat center;
+    background: url('../images/landingIllust.jpg') no-repeat center;
     background-size: cover;
     min-height: 80vh;
     display: flex;

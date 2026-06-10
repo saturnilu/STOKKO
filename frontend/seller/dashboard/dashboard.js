@@ -1,14 +1,7 @@
-// ============================================================
-// CATATAN UNTUK FRONTEND DEV:
-// Yang BERUBAH: data dari dummy_data/localStorage → API backend
-// Yang TIDAK BERUBAH: semua elemen HTML, layout, formatPrice, rendernya
-// ============================================================
-
 const API_URL = 'http://localhost:3000/api';
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    // BERUBAH: currentSellerId tidak lagi hardcoded "s1"
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser || currentUser.role !== 'seller') {
         window.location.href = '../../screens/login/login_email.html';
@@ -110,7 +103,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     let totalRevenue = 0;
     let pendingCount = 0;
     sellerOrders.forEach(order => {
-        // SUDAH DIPERBAIKI: Ditambahin Number() biar nggak numpuk teksnya <3
         if (order.status !== 'cancelled') totalRevenue += Number(order.seller_total || 0);
         if (order.status === 'pending') pendingCount++;
     });

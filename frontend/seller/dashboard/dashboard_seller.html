@@ -6,6 +6,36 @@
     <title>Stokko - Dashboard Seller</title>
     <link rel="stylesheet" href="dashboard_seller.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+    try {
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user && (user.isPremium || user.is_premium === 1 || user.is_premium === true)) {
+            document.documentElement.classList.add('is-premium');
+        }
+    } catch(e) {}
+    </script>
+
+    <style>
+        html.is-premium .btn-premium-top,
+        html.is-premium .go-premium-card,
+        html.is-premium .btn-upgrade-now,
+        html.is-premium .btn-subscribe,
+        html.is-premium .locked-banner,
+        html.is-premium #locked-view,
+        html.is-premium #lockedContent {
+            display: none !important;
+        }
+
+        html.is-premium #unlocked-view,
+        html.is-premium #premiumContent {
+            display: block !important;
+        }
+        
+        html.is-premium #premiumBadge,
+        html.is-premium .badge-premium {
+            display: inline-flex !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -155,5 +185,6 @@
     </div>
 
     <script src="dashboard.js"></script>
+    <script src="../seller-header.js"></script>
 </body>
 </html>

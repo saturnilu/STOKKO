@@ -2,7 +2,7 @@ const API_URL = 'http://localhost:3000/api';
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-    // BERUBAH: selectedProductId sekarang adalah ID angka dari DB
+    // selectedProductId sekarang adalah ID angka dari DB
     // (disimpan di localStorage saat buyer klik produk di dashboard)
     const selectedProductId = localStorage.getItem('selectedProductId');
     if (!selectedProductId) {
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function formatPrice(price) { return `Rp ${price.toLocaleString("id-ID")}`; }
 
-    // BERUBAH: fetch produk dari API bukan dari productsData hardcoded
+    //fetch produk dari API bukan dari productsData hardcoded
     let product, seller;
     try {
         const res  = await fetch(`${API_URL}/products/${selectedProductId}`);
@@ -55,8 +55,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    // Render produk — TIDAK BERUBAH (sama persis dengan sebelumnya)
-    // BERUBAH: field image → image_url
     const imgSrc = product.image_url || 'https://via.placeholder.com/400x300?text=No+Image';
     document.getElementById('mainImage').src  = imgSrc;
     document.getElementById('thumb1').src     = imgSrc;
@@ -85,13 +83,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('storePhone').innerHTML = `<i class="fas fa-phone-alt"></i> ${seller.phone}`;
     document.getElementById('storeMail').innerHTML  = `<i class="fas fa-envelope"></i> ${seller.email}`;
 
-    // BERUBAH: simpan seller_id (angka) ke localStorage, bukan "s1"
     document.getElementById('btnViewProfile').addEventListener('click', () => {
         localStorage.setItem('selectedSellerId', product.seller_id);
         window.location.href = 'seller_profile.html';
     });
 
-    // Qty controls — TIDAK BERUBAH
     const minusBtn = document.getElementById('minusBtn');
     const plusBtn  = document.getElementById('plusBtn');
     const qtyInput = document.getElementById('qtyInput');
@@ -106,11 +102,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (currentVal > 1) qtyInput.value = currentVal - 1;
         });
     }
-
-    // BERUBAH: add to cart via API bukan push localStorage
     document.getElementById('detailAddToCart').addEventListener('click', async () => {
         if (product.stock === 0) {
-            showToast('Yah sayang, item-nya lagi out of stock!', 'error');
+            showToast('item sedang out of stock!', 'error');
             return;
         }
         const qty   = parseInt(qtyInput.value);
@@ -131,7 +125,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 });
 
-// changeImage — TIDAK BERUBAH sama sekali
+// changeImage 
 function changeImage(element) {
     document.getElementById('mainImage').src = element.src;
     document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));

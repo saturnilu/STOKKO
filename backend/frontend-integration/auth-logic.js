@@ -88,7 +88,7 @@ function redirectUser() {
     }
 
     if (rememberCheckbox && !rememberCheckbox.checked) {
-        showToast('Please check "Remember me" first! :>');
+        showToast('Please check "Remember me" first!');
         return;
     }
 

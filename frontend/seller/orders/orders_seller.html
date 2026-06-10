@@ -6,6 +6,29 @@
     <title>Stokko - Orders</title>
     <link rel="stylesheet" href="order_seller.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        </script>
+
+    <style>
+        html.is-premium .btn-premium-top,
+        html.is-premium .go-premium-card,
+        html.is-premium .btn-upgrade-now,
+        html.is-premium .btn-subscribe,
+        html.is-premium .locked-banner,
+        html.is-premium #locked-view,
+        html.is-premium #lockedContent {
+            display: none !important;
+        }
+
+        html.is-premium #unlocked-view,
+        html.is-premium #premiumContent {
+            display: block !important;
+        }
+        
+        html.is-premium #premiumBadge,
+        html.is-premium .badge-premium {
+            display: inline-flex !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -141,6 +164,8 @@
             </section>
         </main>
     </div>
+    <script src="../seller_premium.js"></script>
     <script src="orders_seller.js"></script>
+    <script src="../seller-header.js"></script>
 </body>
 </html>

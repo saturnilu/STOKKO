@@ -69,7 +69,7 @@ STOKKO
 │   ├── buyer
 │   ├── seller
 │   ├── screens
-│   └── dummy_data.js
+│  
 │
 └── README.md
 ```

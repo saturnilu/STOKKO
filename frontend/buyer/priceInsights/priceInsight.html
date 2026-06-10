@@ -6,6 +6,7 @@
     <title>Stokko - Price Insights</title>
     <link rel="stylesheet" href="priceInsight.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
 </head>
 <body>
 
@@ -16,15 +17,15 @@
         </div>
 
         <div class="header-right">
-            <button class="btn-premium-top">
+            <button class="btn-premium-top" id="btn-premium-top">
                 <i class="fas fa-crown"></i> Upgrade To premium
             </button>
 
             <div class="user-profile">
-                <img src="https://www.gravatar.com/avatar/?d=mp" alt="User" class="avatar">
+                <img src="https://www.gravatar.com/avatar/?d=mp" alt="User" class="avatar" id="headerAvatar">
                 <div class="user-info">
-                    <span class="user-name"></span>
-                    <span class="user-email"></span>
+                    <span class="user-name" id="headerUserName">Loading...</span>
+                    <span class="user-email" id="headerUserEmail">Loading...</span>
                 </div>
             </div>
         </div>
@@ -40,11 +41,13 @@
                 <a href="#" class="menu-item active"><i class="fas fa-chart-bar"></i> Price Insights</a>
             </nav>
 
-            <div class="go-premium-card">
+            <div class="go-premium-card" id="go-premium-card">
                 <i class="fas fa-crown"></i>
                 <h3>Go Premium</h3>
                 <p>Unlock Analytics, Smart Pricing & more!</p>
-                <button class="btn-upgrade-now">Upgrade Now</button>
+                <a href="../profilensubscription/subscription_buyer.html" style="text-decoration: none;">
+                    <button class="btn-upgrade-now">Upgrade Now</button>
+                </a>
             </div>
         </aside>
 
@@ -54,108 +57,160 @@
                 <div class="page-title-section">
                     <div class="title-flex">
                         <h2>Price Insights</h2>
-                        <span class="badge-premium"><i class="fas fa-crown"></i> Premium</span>
+                        <span class="badge-premium" id="badgePremium"><i class="fas fa-crown"></i> Premium</span>
                     </div>
-                    <p class="subtitle-text">Advanced insights for Premium members</p>
+                    <p class="subtitle-text" id="subtitleText">Advanced insights for Premium members</p>
                 </div>
 
-                <div class="insight-card bg-yellow">
-                    <div class="card-icon-wrapper yellow-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <div class="card-text-content">
-                        <h3>Seller Recommendation</h3>
-                        <p id="seller-rec-desc">Analyzing best seller data...</p>
-                        <button class="btn-orange" id="btn-seller-rec">View Seller Profile</button>
-                    </div>
-                </div>
-
-                <div class="insight-card bg-light-red border-red">
-                    <div class="card-header-red">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <h3>Smart Pricing Recommendations</h3>
-                    </div>
-                    <div class="smart-pricing-list" id="smart-pricing-container">
-                    </div>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-top">
-                            <div class="icon-box bg-light-green"><i class="fas fa-wallet text-green"></i></div>
-                        </div>
-                        <p class="stat-label">Total Spending</p>
-                        <h3 class="stat-value" id="total-spending">Rp 0</h3>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-top">
-                            <div class="icon-box bg-light-blue"><i class="fas fa-shopping-bag text-blue"></i></div>
-                        </div>
-                        <p class="stat-label">Product Tracked</p>
-                        <h3 class="stat-value" id="total-tracked">0</h3>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-top">
-                            <div class="icon-box bg-light-purple"><i class="fas fa-arrow-down text-purple"></i></div>
-                        </div>
-                        <p class="stat-label">Items Price Decreased</p>
-                        <h3 class="stat-value" id="avg-decrease">0</h3>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-top">
-                            <div class="icon-box bg-light-orange"><i class="fas fa-arrow-up text-orange"></i></div>
-                        </div>
-                        <p class="stat-label">Items Price Increased</p>
-                        <h3 class="stat-value" id="avg-increase">0</h3>
-                    </div>
-                </div>
-
-                <div class="filter-section">
-                    <h3>Market Trends (Past 7 Days)</h3>
-                    <div class="filter-buttons" id="filter-buttons">
-                        <button class="btn-filter active" data-product="All">All Products</button>
-                        <button class="btn-filter" data-product="p1">Chicken</button>
-                        <button class="btn-filter" data-product="p2">Carrots</button>
-                        <button class="btn-filter" data-product="p3">Milk</button>
-                        <button class="btn-filter" data-product="p4">Tomatoes</button>
-                        <button class="btn-filter" data-product="p5">Eggs</button>
-                        <button class="btn-filter" data-product="p6">Apples</button>
-                    </div>
-                </div>
-
-                <div class="chart-card">
-                    <h3 id="chart-title">Average Price Trend (All Products)</h3>
-                    <div class="chart-container">
-                        <svg width="100%" height="250" viewBox="0 0 800 250" preserveAspectRatio="none">
-                            <line x1="40" y1="20" x2="780" y2="20" stroke="#eee" stroke-width="1" />
-                            <line x1="40" y1="65" x2="780" y2="65" stroke="#eee" stroke-width="1" />
-                            <line x1="40" y1="110" x2="780" y2="110" stroke="#eee" stroke-width="1" />
-                            <line x1="40" y1="155" x2="780" y2="155" stroke="#eee" stroke-width="1" />
-                            <line x1="40" y1="200" x2="780" y2="200" stroke="#666" stroke-width="1" />
+                <div id="locked-view">
+                    <div class="locked-banner">
+                        <div class="banner-inner">
+                            <div class="banner-header">
+                                <i class="fas fa-crown crown-icon"></i>
+                                <h2>Unlock Premium Features</h2>
+                            </div>
+                            <p class="banner-subtitle">Take your shopping to the next level with advanced tools and insights</p>
                             
-                            <text id="y-label-max" x="35" y="25" fill="#666" font-size="11" text-anchor="end">0</text>
-                            <text id="y-label-75" x="35" y="70" fill="#666" font-size="11" text-anchor="end">0</text>
-                            <text id="y-label-50" x="35" y="115" fill="#666" font-size="11" text-anchor="end">0</text>
-                            <text id="y-label-25" x="35" y="160" fill="#666" font-size="11" text-anchor="end">0</text>
-                            <text id="y-label-0" x="35" y="205" fill="#666" font-size="11" text-anchor="end">0</text>
-
-                            <text x="40" y="225" fill="#666" font-size="12" text-anchor="middle">Mon</text>
-                            <text x="163" y="225" fill="#666" font-size="12" text-anchor="middle">Tue</text>
-                            <text x="287" y="225" fill="#666" font-size="12" text-anchor="middle">Wed</text>
-                            <text x="410" y="225" fill="#666" font-size="12" text-anchor="middle">Thu</text>
-                            <text x="533" y="225" fill="#666" font-size="12" text-anchor="middle">Fri</text>
-                            <text x="657" y="225" fill="#666" font-size="12" text-anchor="middle">Sat</text>
-                            <text x="780" y="225" fill="#666" font-size="12" text-anchor="middle">Sun</text>
-
-                            <path id="chart-path" d="" fill="none" stroke="#4285f4" stroke-width="3" />
-                            <g id="chart-points"></g>
-                        </svg>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <div class="icon-box blue"><i class="fas fa-chart-line"></i></div>
+                                    <div class="text">
+                                        <h4>Market Trends</h4>
+                                        <p>Track average price trends for all products over time</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="icon-box purple"><i class="fas fa-bullseye"></i></div>
+                                    <div class="text">
+                                        <h4>Smart Recommendations</h4>
+                                        <p>Get AI-powered suggestions for the best sellers and prices</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="icon-box green"><i class="fas fa-arrow-trend-down"></i></div>
+                                    <div class="text">
+                                        <h4>Price Tracking</h4>
+                                        <p>Monitor price increases and decreases across the market</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="icon-box yellow"><i class="fas fa-wallet"></i></div>
+                                    <div class="text">
+                                        <h4>Spending Analytics</h4>
+                                        <p>Analyze your total spending and tracked products efficiently</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <a href="../profilensubscription/subscription_buyer.html" style="text-decoration: none;">
+                                <button class="btn-upgrade-banner"><i class="fas fa-crown"></i> Upgrade To premium</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="locked-charts-container">
+                        <div class="chart-box-locked"><i class="fas fa-lock"></i></div>
+                        <div class="chart-box-locked"><i class="fas fa-lock"></i></div>
+                        <div class="chart-box-locked"><i class="fas fa-lock"></i></div>
                     </div>
                 </div>
 
-                <div class="chart-card">
-                    <h3 id="grid-title">Product Price Monitoring (All)</h3>
-                    <div class="monitoring-grid" id="monitoring-grid-container">
+                <div id="unlocked-view" style="display: none;">
+                    <div class="insight-card bg-yellow">
+                        <div class="card-icon-wrapper yellow-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="card-text-content">
+                            <h3>Seller Recommendation</h3>
+                            <p id="seller-rec-desc">Analyzing best seller data...</p>
+                            <button class="btn-orange" id="btn-seller-rec">View Seller Profile</button>
+                        </div>
+                    </div>
+
+                    <div class="insight-card bg-light-red border-red">
+                        <div class="card-header-red">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>Smart Pricing Recommendations</h3>
+                        </div>
+                        <div class="smart-pricing-list" id="smart-pricing-container">
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-top">
+                                <div class="icon-box bg-light-green"><i class="fas fa-wallet text-green"></i></div>
+                            </div>
+                            <p class="stat-label">Total Spending</p>
+                            <h3 class="stat-value" id="total-spending">Rp 0</h3>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-top">
+                                <div class="icon-box bg-light-blue"><i class="fas fa-shopping-bag text-blue"></i></div>
+                            </div>
+                            <p class="stat-label">Product Tracked</p>
+                            <h3 class="stat-value" id="total-tracked">0</h3>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-top">
+                                <div class="icon-box bg-light-purple"><i class="fas fa-arrow-down text-purple"></i></div>
+                            </div>
+                            <p class="stat-label">Items Price Decreased</p>
+                            <h3 class="stat-value" id="avg-decrease">0</h3>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-top">
+                                <div class="icon-box bg-light-orange"><i class="fas fa-arrow-up text-orange"></i></div>
+                            </div>
+                            <p class="stat-label">Items Price Increased</p>
+                            <h3 class="stat-value" id="avg-increase">0</h3>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3>Market Trends (Past 7 Days)</h3>
+                        <div class="filter-buttons" id="filter-buttons">
+                            <button class="btn-filter active" data-category="All">All Products</button>
+                            <button class="btn-filter" data-category="Meat">Meat</button>
+                            <button class="btn-filter" data-category="Vegetables">Vegetables</button>
+                            <button class="btn-filter" data-category="Dairy">Dairy</button>
+                            <button class="btn-filter" data-category="Fruits">Fruits</button>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h3 id="chart-title">Average Price Trend (All Products)</h3>
+                        <div class="chart-container">
+                            <svg width="100%" height="250" viewBox="0 0 800 250" preserveAspectRatio="none">
+                                <line x1="40" y1="20" x2="780" y2="20" stroke="#eee" stroke-width="1" />
+                                <line x1="40" y1="65" x2="780" y2="65" stroke="#eee" stroke-width="1" />
+                                <line x1="40" y1="110" x2="780" y2="110" stroke="#eee" stroke-width="1" />
+                                <line x1="40" y1="155" x2="780" y2="155" stroke="#eee" stroke-width="1" />
+                                <line x1="40" y1="200" x2="780" y2="200" stroke="#666" stroke-width="1" />
+                                
+                                <text id="y-label-max" x="35" y="25" fill="#666" font-size="11" text-anchor="end">0</text>
+                                <text id="y-label-75" x="35" y="70" fill="#666" font-size="11" text-anchor="end">0</text>
+                                <text id="y-label-50" x="35" y="115" fill="#666" font-size="11" text-anchor="end">0</text>
+                                <text id="y-label-25" x="35" y="160" fill="#666" font-size="11" text-anchor="end">0</text>
+                                <text id="y-label-0" x="35" y="205" fill="#666" font-size="11" text-anchor="end">0</text>
+
+                                <text x="40" y="225" fill="#666" font-size="12" text-anchor="middle">Day 1</text>
+                                <text x="163" y="225" fill="#666" font-size="12" text-anchor="middle">Day 2</text>
+                                <text x="287" y="225" fill="#666" font-size="12" text-anchor="middle">Day 3</text>
+                                <text x="410" y="225" fill="#666" font-size="12" text-anchor="middle">Day 4</text>
+                                <text x="533" y="225" fill="#666" font-size="12" text-anchor="middle">Day 5</text>
+                                <text x="657" y="225" fill="#666" font-size="12" text-anchor="middle">Day 6</text>
+                                <text x="780" y="225" fill="#666" font-size="12" text-anchor="middle">Today</text>
+
+                                <path id="chart-path" d="" fill="none" stroke="#4285f4" stroke-width="3" />
+                                <g id="chart-points"></g>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h3 id="grid-title">Product Price Monitoring (All)</h3>
+                        <div class="monitoring-grid" id="monitoring-grid-container">
+                        </div>
                     </div>
                 </div>
 
@@ -163,7 +218,6 @@
         </main>
     </div>
 
-    <script src="../buyer-header.js"></script>
     <script src="priceInsight.js"></script>
 </body>
 </html>

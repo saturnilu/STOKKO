@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let tempUserData = {};
 
     // BERUBAH: load data dari currentUser (hasil login) kalau belum pernah edit profil
-    const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
+    let currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
 
     // Set Header Profile
     const headerUserName = document.querySelector(".user-profile .user-name");
@@ -62,41 +62,126 @@ document.addEventListener("DOMContentLoaded", () => {
             if (inputs[3]) inputs[3].value = currentUser.phone    || '';
             if (profileName)  profileName.textContent  = currentUser.username || '';
             if (profileStore) profileStore.textContent = currentUser.username || '';
-            // --- DUMMY DATA LOGIC (COMMENTED, sudah tidak dipakai) ---
-            /*
-            if (!localStorage.getItem("currentSellerId")) localStorage.setItem("currentSellerId", "s1");
-            const currentSellerId = localStorage.getItem("currentSellerId");
-            if (typeof storesData !== 'undefined' && storesData[currentSellerId]) {
-                const sellerData = storesData[currentSellerId];
-                const headerEmail = document.querySelector(".user-profile .user-email");
-                if (headerEmail) headerEmail.textContent = sellerData.name;
-                if (profileName) profileName.textContent = "Alex Johnson";
-                if (profileStore) profileStore.textContent = sellerData.name;
-                if (inputs[0]) inputs[0].value = "Alex Johnson";
-                if (inputs[1]) inputs[1].value = sellerData.name;
-                if (inputs[2]) inputs[2].value = sellerData.email;
-                if (inputs[3]) inputs[3].value = sellerData.phone;
-                if (inputs[4]) inputs[4].value = sellerData.location;
-            }
-            */
         }
     }
+    
+    function applyPremiumUI() {
+        try {
+            const isPremium = !!(currentUser && (currentUser.isPremium || currentUser.is_premium === 1 || currentUser.is_premium === true));
+            if (!isPremium) return;
+
+            const btnPremiumTop = document.querySelector('.btn-premium-top');
+            const goPremiumCard = document.querySelector('.go-premium-card');
+            const btnUpgradeNow = document.querySelectorAll('.btn-upgrade-now, .btn-subscribe');
+
+            if (btnUpgradeNow && btnUpgradeNow.forEach) {
+                btnUpgradeNow.forEach(btn => { if (btn && btn.style) btn.style.display = 'none'; });
+            }
+
+            if (btnPremiumTop && btnPremiumTop.style) btnPremiumTop.style.display = 'none';
+            if (goPremiumCard && goPremiumCard.style) goPremiumCard.style.display = 'none';
+        } catch (err) {
+            console.error('applyPremiumUI error:', err);
+        }
+    }
+
+    async function fetchSubscriptionStatus() {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+
+        try {
+            const res = await fetch('http://localhost:3000/api/subscriptions/me', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if (!res.ok) return;
+            const json = await res.json();
+            
+            if (json.data && json.data.isPremium) {
+                currentUser.isPremium = true;
+                currentUser.is_premium = 1;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                applyPremiumUI();
+            }
+        } catch (err) {
+            console.warn('fetchSubscriptionStatus error:', err);
+        }
+    }
+
+    const setupSubscriptionActions = () => {
+        const upgradeButtons = document.querySelectorAll('.btn-upgrade-now, .btn-premium-top, .btn-subscribe');
+        
+        upgradeButtons.forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                
+                if (currentUser.isPremium || currentUser.is_premium === 1) {
+                    showToast("Toko kamu sudah berstatus premium! 👑", "success");
+                    return;
+                }
+
+                if (!confirm("Apakah kamu ingin mengaktifkan akun Seller Premium seharga Rp 108.900?")) return;
+
+                const token = localStorage.getItem('token');
+                try {
+                    const res = await fetch('http://localhost:3000/api/subscriptions/checkout', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            plan: 'monthly',
+                            price: 108900,
+                            payment_method: 'qris'
+                        })
+                    });
+
+                    const json = await res.json();
+
+                    if (res.ok) {
+                        currentUser.isPremium = true;
+                        currentUser.is_premium = 1;
+                        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                        
+                        applyPremiumUI();
+                        showToast("Upgrade Berhasil! Selamat datang di Premium 👑", "success");
+                        
+                        setTimeout(() => {
+                            window.location.href = '../analytics/analytics_seller.html'; 
+                        }, 2000);
+                    } else {
+                        showToast(json.message || "Gagal memproses subscription.", "error");
+                    }
+                } catch (err) {
+                    console.error("Subscription Error:", err);
+                    showToast("Terjadi kesalahan koneksi server.", "error");
+                }
+            });
+        });
+    };
+
     loadUserData();
+    fetchSubscriptionStatus();
+    applyPremiumUI();
+    setupSubscriptionActions();
 
     function showToast(message, type = 'success') {
         const toast = document.getElementById('toastNotification');
         const toastMessage = document.getElementById('toastMessage');
         const toastIcon = document.getElementById('toastIcon');
-        toastMessage.textContent = message;
-        if (type === 'error') {
-            toast.classList.add('error');
-            toastIcon.className = 'fas fa-exclamation-circle';
-        } else {
-            toast.classList.remove('error');
-            toastIcon.className = 'fas fa-check-circle';
+        if (toastMessage) toastMessage.textContent = message;
+        if (toast) {
+            if (type === 'error') {
+                toast.classList.add('error');
+                if (toastIcon) toastIcon.className = 'fas fa-exclamation-circle';
+            } else {
+                toast.classList.remove('error');
+                if (toastIcon) toastIcon.className = 'fas fa-check-circle';
+            }
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
         }
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
     if (btnEditProfile) {
@@ -110,24 +195,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 avatar: profileBigAvatar.src
             };
             inputs.forEach(input => {
-                input.removeAttribute('readonly');
-                input.classList.add('editable');
+                if (input) {
+                    input.removeAttribute('readonly');
+                    input.classList.add('editable');
+                }
             });
-            inputs[0].focus();
+            if (inputs[0]) inputs[0].focus();
             btnEditProfile.style.display = 'none';
-            editActions.style.display = 'flex';
-            editAvatarOverlay.style.display = 'flex';
+            if (editActions) editActions.style.display = 'flex';
+            if (editAvatarOverlay) editAvatarOverlay.style.display = 'flex';
         });
     }
 
     if (btnCancelEdit) {
         btnCancelEdit.addEventListener('click', () => {
-            inputs[0].value = tempUserData.fullName;
-            inputs[1].value = tempUserData.storeName;
-            inputs[2].value = tempUserData.email;
-            inputs[3].value = tempUserData.phone;
-            inputs[4].value = tempUserData.address;
-            profileBigAvatar.src = tempUserData.avatar;
+            if (inputs[0]) inputs[0].value = tempUserData.fullName;
+            if (inputs[1]) inputs[1].value = tempUserData.storeName;
+            if (inputs[2]) inputs[2].value = tempUserData.email;
+            if (inputs[3]) inputs[3].value = tempUserData.phone;
+            if (inputs[4]) inputs[4].value = tempUserData.address;
+            if (profileBigAvatar) profileBigAvatar.src = tempUserData.avatar;
             closeEditMode();
         });
     }
@@ -143,8 +230,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 avatar: profileBigAvatar.src
             };
             localStorage.setItem('stokko_seller_profile', JSON.stringify(newData));
-            profileName.textContent = newData.fullName;
-            profileStore.textContent = newData.storeName;
+            if (profileName) profileName.textContent = newData.fullName;
+            if (profileStore) profileStore.textContent = newData.storeName;
             closeEditMode();
             showToast("Seller profile successfully updated! 🎉");
         });
@@ -152,12 +239,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function closeEditMode() {
         inputs.forEach(input => {
-            input.setAttribute('readonly', true);
-            input.classList.remove('editable');
+            if (input) {
+                input.setAttribute('readonly', true);
+                input.classList.remove('editable');
+            }
         });
-        btnEditProfile.style.display = 'inline-block';
-        editActions.style.display = 'none';
-        editAvatarOverlay.style.display = 'none';
+        if (btnEditProfile) btnEditProfile.style.display = 'inline-block';
+        if (editActions) editActions.style.display = 'none';
+        if (editAvatarOverlay) editAvatarOverlay.style.display = 'none';
     }
 
     if (editAvatarOverlay && avatarUpload) {
@@ -166,7 +255,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = (e) => profileBigAvatar.src = e.target.result;
+                reader.onload = (e) => {
+                    if (profileBigAvatar) profileBigAvatar.src = e.target.result;
+                };
                 reader.readAsDataURL(file);
             }
         });

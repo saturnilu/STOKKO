@@ -2,7 +2,12 @@ const API_URL = 'http://localhost:3000/api';
 
 document.addEventListener("DOMContentLoaded", async () => {
     // 1. Cek User Login
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const currentUserStr = localStorage.getItem('currentUser');
+    let currentUser = {};
+    if (currentUserStr) {
+        currentUser = JSON.parse(currentUserStr);
+    }
+
     if (!currentUser || currentUser.role !== 'seller') {
         window.location.href = '../../screens/login/login_email.html';
         return;
@@ -18,23 +23,71 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (headerEmail) headerEmail.textContent = currentUser.email || "";
     if (headerAvatar) headerAvatar.src = currentUser.avatar || defaultAvatar;
 
-    // 3. Logic Premium & Buka Halaman
-    const isPremium = true; // Hardcoded true untuk testing
-    
-    if (isPremium) {
-        // Tampilkan konten premium, sembunyikan banner gembok
-        if (document.getElementById("lockedContent")) document.getElementById("lockedContent").style.display = "none";
-        if (document.getElementById("premiumContent")) document.getElementById("premiumContent").style.display = "block";
-        if (document.getElementById("premiumBadge")) document.getElementById("premiumBadge").style.display = "inline-block";
-        if (document.getElementById("analyticsSubtitle")) document.getElementById("analyticsSubtitle").textContent = "Comprehensive insights into your business performance";
+    // 3. CEK STATUS PREMIUM LANGSUNG KE BACKEND (Sama seperti Buyer!)
+    let isPremium = false;
+    const token = localStorage.getItem('token');
 
-        // Sembunyikan tombol upgrade
-        const btnPremiumTop = document.querySelector(".btn-premium-top");
-        const goPremiumCard = document.querySelector(".go-premium-card");
+    if (token) {
+        try {
+            const res = await fetch(`${API_URL}/subscriptions/me`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (res.ok) {
+                const json = await res.json();
+                // Jika backend mengkonfirmasi user ini premium
+                if (json.data && json.data.isPremium) {
+                    isPremium = true;
+                    // Update localStorage biar selalu sinkron
+                    currentUser.is_premium = 1;
+                    currentUser.isPremium = true;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                } else {
+                    // Jika langganan sudah habis (expired di backend)
+                    currentUser.is_premium = 0;
+                    currentUser.isPremium = false;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+            }
+        } catch (err) {
+            console.error("Gagal cek status premium:", err);
+            // Fallback: baca dari memory kalau server ngadat
+            isPremium = !!(currentUser && (currentUser.is_premium === 1 || currentUser.isPremium === true));
+        }
+    } else {
+        isPremium = !!(currentUser && (currentUser.is_premium === 1 || currentUser.isPremium === true));
+    }
+
+    // 4. Logic Premium & Buka Halaman
+    const lockedContent = document.getElementById("lockedContent");
+    const premiumContent = document.getElementById("premiumContent");
+    const premiumBadge = document.getElementById("premiumBadge");
+    const analyticsSubtitle = document.getElementById("analyticsSubtitle");
+    const btnPremiumTop = document.querySelector(".btn-premium-top");
+    const goPremiumCard = document.querySelector(".go-premium-card");
+
+    if (isPremium) {
+        // BUKA GEMBOK: Tampilkan konten premium, sembunyikan banner locked
+        if (lockedContent) lockedContent.style.display = "none";
+        if (premiumContent) premiumContent.style.display = "block";
+        if (premiumBadge) premiumBadge.style.display = "inline-block";
+        if (analyticsSubtitle) analyticsSubtitle.textContent = "Comprehensive insights into your business performance";
+
+        // Sembunyikan iklan upgrade
         if (btnPremiumTop) btnPremiumTop.style.display = "none";
         if (goPremiumCard) goPremiumCard.style.display = "none";
 
+        // Tarik data grafik dari backend karena dia Premium!
         await loadAnalyticsData();
+    } else {
+        // KUNCI GEMBOK: Tampilkan banner locked, sembunyikan fitur
+        if (lockedContent) lockedContent.style.display = "block";
+        if (premiumContent) premiumContent.style.display = "none";
+        if (premiumBadge) premiumBadge.style.display = "none";
+        if (analyticsSubtitle) analyticsSubtitle.textContent = "Advanced insights for Premium members";
+
+        // Munculkan iklan upgrade
+        if (btnPremiumTop) btnPremiumTop.style.display = "flex"; // atau block tergantung css kamu
+        if (goPremiumCard) goPremiumCard.style.display = "block";
     }
 });
 

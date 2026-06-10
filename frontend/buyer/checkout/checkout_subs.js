@@ -7,6 +7,11 @@
 // ============================================================
 
 const API_URL = 'http://localhost:3000/api';
+let selectedPaymentMethod = 'qris';
+
+function setSelectedPaymentMethod(methodId) {
+    selectedPaymentMethod = methodId;
+}
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -69,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     body: JSON.stringify({
                         plan: planType,
                         price: grandTotal,
+                        payment_method: selectedPaymentMethod,
                     })
                 });
                 const data = await res.json();
@@ -109,6 +115,7 @@ function selectPayment(element, methodId) {
     });
     element.classList.add('selected');
     element.querySelector('input').checked = true;
+    setSelectedPaymentMethod(methodId);
 
     document.querySelectorAll('.payment-dynamic-section').forEach(section => {
         section.classList.remove('active');
